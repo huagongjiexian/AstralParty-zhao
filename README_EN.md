@@ -28,6 +28,15 @@ Grab the latest package from [Releases](https://github.com/huagongjiexian/Astral
 | Author | 喵小照 (Miao Xiao Zhao) |
 | Target game | Slay the Spire 2 `0.107.1` |
 
+## Changelog
+
+### 0.0.16.7
+- Updated the Miko's animation: Idle 30 frames @ 18 FPS, Attack 60 frames @ 20 FPS, battle position `Vector2(8.6, -148.8)`
+- Refactored the codebase: Foxfire moved to `Code/FoxFire/`, the four-form system to `Code/Forms/`, and Powers split into individual files
+
+### 0.0.15
+- Initial release
+
 ## Cards
 
 Foxfire Strike · Miss Zhao is Our Light! · Section - Intro · Emergency Treatment · Section - Main · Section - Chorus · Outro · O Light! · Chase Chase · Fast Forward
