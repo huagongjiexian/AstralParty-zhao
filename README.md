@@ -1,70 +1,70 @@
-# 照 · Zhao
+# Zhao (照)
 
-> 拥有四种形态的少女。以巫女（狐火）、小护士（治愈）、歌姬（段落）、淑女（光）编织属于自己的战斗旋律。
+> A girl with four forms. Weaves her battle song with the Miko (Foxfire), Nurse (Healing), Diva (Sections) and Lady (Light).
 
-「照」是《杀戮尖塔 2》（Slay the Spire 2）的一名原创角色模组。她能在四种形态之间自由切换，每一种形态都对应一套独立的战斗节奏：
+Zhao is an original character mod for **Slay the Spire 2**. She switches freely between four forms, each with its own distinct battle rhythm:
 
-| 形态 | 核心机制 | 玩法定位 |
+| Form | Core Mechanic | Playstyle |
 |---|---|---|
-| 巫女 | 狐火 | 基础形态，围绕「狐火」层层累积、滚起雪球 |
-| 小护士 | 治愈 | 回合开始回复、回合结束衰减的续航流派 |
-| 歌姬 | 段落 | 前奏 → 主歌 → 副歌 → 间奏 → 尾声，按节奏推进 |
-| 淑女 | 光 | 积攒「光」，一次性倾泻打出爆发 |
+| Miko | Foxfire | The base form, stacking Foxfire into a growing snowball |
+| Nurse | Healing | Sustained healing that ticks each turn and decays at turn end |
+| Diva | Sections | Intro → Main → Chorus → Interlude → Outro, a rhythm-driven progression |
+| Lady | Light | Bank Light, then unleash it all in a single burst |
 
-## 下载与安装
+## Download & Install
 
-最新打包版见 [Releases](https://github.com/huagongjiexian/AstralParty-zhao/releases)（`zhao-0.0.15.zip`），也可直接取仓库 `发布/` 目录下的三个文件。
+Grab the latest package from [Releases](https://github.com/huagongjiexian/AstralParty-zhao/releases) (`zhao-0.0.15.zip`), or take the three files directly from the `发布/` directory.
 
-1. 解压得到 `zhao.dll`、`zhao.json`、`zhao.pck` 三个文件
-2. 放入游戏目录的 `mods\zhao\`（不存在则新建）
-3. 启动游戏，在角色选择界面选择「照」
+1. Unzip to get `zhao.dll`, `zhao.json`, and `zhao.pck`
+2. Place the three files into the game's `mods\zhao\` folder (create it if it does not exist)
+3. Launch the game and select **Zhao** on the character select screen
 
-## 基本信息
+## Overview
 
-| 项目 | 值 |
+| Field | Value |
 |---|---|
-| 模组 id | `zhao` |
-| 版本 | `0.0.15` |
-| 作者 | 喵小照 |
-| 目标游戏 | 《Slay the Spire 2》（杀戮尖塔 2）`0.107.1` |
+| Mod id | `zhao` |
+| Version | `0.0.15` |
+| Author | 喵小照 (Miao Xiao Zhao) |
+| Target game | Slay the Spire 2 `0.107.1` |
 
-## 卡牌
+## Cards
 
-狐火打击 · 照小姐就是我们的光！ · 段落·前奏 · 紧急治疗 · 段落·主歌 · 段落·副歌 · 尾声 · 光よ！ · 追击追击 · 快进
+Foxfire Strike · Miss Zhao is Our Light! · Section - Intro · Emergency Treatment · Section - Main · Section - Chorus · Outro · O Light! · Chase Chase · Fast Forward
 
-## 目录结构
+## Directory Structure
 
-| 目录 / 文件 | 内容 |
+| Path | Contents |
 |---|---|
-| `Code/` | C# 模组源码（`[ModInitializer]` 入口 + Harmony 补丁） |
-| `zhao/` | Godot 资源：美术 `art/`、图标 `images/`、本地化 `localization/`、视频 `video/` |
-| `scenes/` | Godot 场景（角色视觉、界面、角色选择画面） |
-| `src/` | 辅助脚本 |
-| `发布/` | 交付物 `zhao.dll` / `zhao.json` / `zhao.pck` |
-| `project.godot` / `zhao.csproj` / `zhao.sln` | Godot + .NET 工程文件 |
-| `build_checks.ps1` | 打包前静态检查脚本 |
+| `Code/` | C# mod source (`[ModInitializer]` entry point + Harmony patches) |
+| `zhao/` | Godot assets: art `art/`, icons `images/`, localization `localization/`, video `video/` |
+| `scenes/` | Godot scenes (creature visuals, UI, character select screen) |
+| `src/` | Helper scripts |
+| `发布/` | Deliverables `zhao.dll` / `zhao.json` / `zhao.pck` |
+| `project.godot` / `zhao.csproj` / `zhao.sln` | Godot + .NET project files |
+| `build_checks.ps1` | Pre-packaging static checks |
 
-## 构建
+## Building
 
 ```powershell
 dotnet build zhao.csproj
 ```
 
-重新导出 `zhao.pck`：
+Re-export `zhao.pck`:
 
 ```powershell
 megadot --headless --path . --export-pack "BasicExport" "发布\zhao.pck"
 ```
 
-> `megadot` 为与游戏本体一致的 MegaDot（Godot 4.5）控制台可执行文件。
+> `megadot` is the MegaDot (Godot 4.5) console executable matching the game.
 
-打包前静态检查：
+Pre-packaging static check:
 
 ```powershell
 powershell -File build_checks.ps1
 ```
 
-## 依赖
+## Dependencies
 
-- Godot 4.5（MegaDot，与游戏本体一致）
+- Godot 4.5 (MegaDot, matching the game)
 - .NET SDK 9
