@@ -26,7 +26,7 @@
 | `export_presets.cfg` | Godot 导出预设（导出 `zhao.pck`） |
 | `build_checks.ps1` | 打包前静态检查脚本 |
 
-> `发布/`（交付物 `zhao.dll` / `zhao.json` / `zhao.pck`）与 `.godot/`（生成缓存）不进入版本库。完整交付包请从发布渠道获取。
+> 交付物 `zhao.dll` / `zhao.json` / `zhao.pck` 在 `发布/` 目录中；也可从仓库的 **Releases** 页面下载打包好的 `照_0.0.15.zip`。`.godot/`（生成缓存）不进入版本库。
 
 ## 安装
 
