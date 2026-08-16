@@ -1,31 +1,97 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
 using Zhao.FoxFire;
 
 namespace Zhao.Relics;
 
-/// <summary>
-/// 狐之火(初始遗物,用户设计):战斗开始时,获得2层狐火。
-/// 狐火为特殊能量式战斗资源(可累积、战斗结束清零)。
-/// </summary>
 public sealed class FoxFireRelic : RelicModel
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
+	[StructLayout((LayoutKind)3)]
+	[CompilerGenerated]
+	private struct _003CBeforeCombatStart_003Ed__8 : IAsyncStateMachine
+	{
+		public int _003C_003E1__state;
 
-    // 图标:模组自带占位 PNG(正式美术待动作/美术资源确认后替换)。
-    // 路径必须指向模组自身 pck 内的真实路径(res://zhao/images/...);
-    // 此前误用 ImageHelper.GetImagePath → res://images/... 前缀,导致游戏中资源路径不存在,
-    // ResourceLoader.Load<Texture2D> 报 "No loader found"。加载机制保持原版(经 .import 侧车 remap 到 .godot/imported 的 ctex)。
-    public override string PackedIconPath => "res://zhao/images/packed/relics/fox_fire_relic.png";
-    protected override string PackedIconOutlinePath => "res://zhao/images/packed/relics/fox_fire_relic_outline.png";
-    protected override string BigIconPath => "res://zhao/images/relics/fox_fire_relic.png";
+		public AsyncTaskMethodBuilder _003C_003Et__builder;
 
-    public override async Task BeforeCombatStart()
-    {
-        Flash();
-        // 战斗开始时获得2点狐火 —— 狐火是特殊能量资源(0.107.1 星辉同架构),
-        // 经 FoxFireCmd.Gain 增加(对应原版 PlayerCmd.GainStars),不再是 Power/Buff。
-        await FoxFireCmd.Gain(2, base.Owner);
-    }
+		public FoxFireRelic _003C_003E4__this;
+
+		private TaskAwaiter _003C_003Eu__1;
+
+		private void MoveNext()
+		{
+			//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+			int num = _003C_003E1__state;
+			FoxFireRelic foxFireRelic = _003C_003E4__this;
+			try
+			{
+				TaskAwaiter val;
+				if (num != 0)
+				{
+					((RelicModel)foxFireRelic).Flash();
+					val = FoxFireCmd.Gain(2, ((RelicModel)foxFireRelic).Owner).GetAwaiter();
+					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 0);
+						_003C_003Eu__1 = val;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CBeforeCombatStart_003Ed__8>(ref val, ref this);
+						return;
+					}
+				}
+				else
+				{
+					val = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+				}
+				((TaskAwaiter)(ref val)).GetResult();
+			}
+			catch (global::System.Exception exception)
+			{
+				_003C_003E1__state = -2;
+				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				return;
+			}
+			_003C_003E1__state = -2;
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+		}
+
+		[DebuggerHidden]
+		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		{
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+		}
+	}
+
+	public override RelicRarity Rarity => (RelicRarity)1;
+
+	public override string PackedIconPath => "res://zhao/images/packed/relics/fox_fire_relic.png";
+
+	protected override string PackedIconOutlinePath => "res://zhao/images/packed/relics/fox_fire_relic_outline.png";
+
+	protected override string BigIconPath => "res://zhao/images/relics/fox_fire_relic.png";
+
+	[AsyncStateMachine(typeof(_003CBeforeCombatStart_003Ed__8))]
+	public override global::System.Threading.Tasks.Task BeforeCombatStart()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_003CBeforeCombatStart_003Ed__8 _003CBeforeCombatStart_003Ed__9 = default(_003CBeforeCombatStart_003Ed__8);
+		_003CBeforeCombatStart_003Ed__9._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
+		_003CBeforeCombatStart_003Ed__9._003C_003E4__this = this;
+		_003CBeforeCombatStart_003Ed__9._003C_003E1__state = -1;
+		((AsyncTaskMethodBuilder)(ref _003CBeforeCombatStart_003Ed__9._003C_003Et__builder)).Start<_003CBeforeCombatStart_003Ed__8>(ref _003CBeforeCombatStart_003Ed__9);
+		return ((AsyncTaskMethodBuilder)(ref _003CBeforeCombatStart_003Ed__9._003C_003Et__builder)).Task;
+	}
 }

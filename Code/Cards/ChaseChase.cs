@@ -1,4 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -7,63 +14,121 @@ using Zhao.Pursuit;
 
 namespace Zhao.Cards;
 
-/// <summary>
-/// 追击追击。普通,攻击牌(⚠️ 类型为默认解释)。
-/// 【基础】2费,狐火2:进行2次追击,每次6伤害;巫女形态额外进行1次追击。
-/// 【+】2费,狐火2:与基础相同(不得擅自加强)。
-/// 【++】3费,狐火1:进行4次追击,每次8伤害;巫女形态额外进行2次(总计6次)。
-/// 狐火2/狐火1 为真正的资源支付成本:FoxFireCost 声明成本(对应原版 CanonicalStarCost),
-/// 狐火不足时卡牌不可使用(对应原版 HasEnoughResourcesFor 星辉闸门),
-/// 支付由 ZhaoFoxFireCombatHooks.BeforeCardPlayed 在原版出牌管线中效果执行前自动完成(对应原版 SpendStars)。
-/// </summary>
 public sealed class ChaseChase : ZhaoCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new IntVar("Foxfire", 2m),
-        new IntVar("Hits", 2m),
-        new IntVar("ChaseDamage", 6m),
-    };
+	[StructLayout((LayoutKind)3)]
+	[CompilerGenerated]
+	private struct _003COnPlay_003Ed__7 : IAsyncStateMachine
+	{
+		public int _003C_003E1__state;
 
-    public ChaseChase() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
-    {
-    }
+		public AsyncTaskMethodBuilder _003C_003Et__builder;
 
-    public override int MaxUpgradeLevel => 2;
+		public CardPlay cardPlay;
 
-    /// <summary>狐火支付成本:基础/+ 为 2;++ 为 1。对应原版 CanonicalStarCost。</summary>
-    public override int FoxFireCost => (int)base.DynamicVars["Foxfire"].IntValue;
+		public ChaseChase _003C_003E4__this;
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        var creature = base.Owner.Creature;
+		public PlayerChoiceContext choiceContext;
 
-        int hits = (int)base.DynamicVars["Hits"].IntValue;
-        decimal damage = base.DynamicVars["ChaseDamage"].BaseValue;
+		private TaskAwaiter _003C_003Eu__1;
 
-        // 巫女形态额外追击:基础/+:1次;++:2次
-        if (FormSystem.GetCurrentForm(creature) == ZhaoForm.Kitsune)
-        {
-            hits += base.CurrentUpgradeLevel >= 2 ? 2 : 1;
-        }
+		private void MoveNext()
+		{
+			//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0096: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
+			int num = _003C_003E1__state;
+			ChaseChase chaseChase = _003C_003E4__this;
+			try
+			{
+				TaskAwaiter val;
+				if (num != 0)
+				{
+					ArgumentNullException.ThrowIfNull((object)cardPlay.Target, "cardPlay.Target");
+					Creature creature = ((CardModel)chaseChase).Owner.Creature;
+					int num2 = ((CardModel)chaseChase).DynamicVars["Hits"].IntValue;
+					decimal baseValue = ((CardModel)chaseChase).DynamicVars["ChaseDamage"].BaseValue;
+					if (FormSystem.GetCurrentForm(creature) == ZhaoForm.Kitsune)
+					{
+						num2 += ((((CardModel)chaseChase).CurrentUpgradeLevel < 2) ? 1 : 2);
+					}
+					val = PursuitExecutor.Chase(choiceContext, ((CardModel)chaseChase).Owner, num2, baseValue, cardPlay.Target).GetAwaiter();
+					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 0);
+						_003C_003Eu__1 = val;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__7>(ref val, ref this);
+						return;
+					}
+				}
+				else
+				{
+					val = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+				}
+				((TaskAwaiter)(ref val)).GetResult();
+			}
+			catch (global::System.Exception exception)
+			{
+				_003C_003E1__state = -2;
+				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				return;
+			}
+			_003C_003E1__state = -2;
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+		}
 
-        await PursuitExecutor.Chase(choiceContext, base.Owner, hitCount: hits, damagePerHit: damage, target: cardPlay.Target);
-    }
+		[DebuggerHidden]
+		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		{
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+		}
+	}
 
-    protected override void OnUpgrade()
-    {
-        if (base.CurrentUpgradeLevel == 1)
-        {
-            // 基础→+:效果与基础相同(不得擅自加强)→ 不改任何数值
-        }
-        else if (base.CurrentUpgradeLevel == 2)
-        {
-            // ++:3费,狐火1,4次追击×8伤害
-            base.EnergyCost.UpgradeBy(1);                    // 2费 → 3费
-            base.DynamicVars["Foxfire"].UpgradeValueBy(-1m); // 2 → 1
-            base.DynamicVars["Hits"].UpgradeValueBy(2m);     // 2 → 4
-            base.DynamicVars["ChaseDamage"].UpgradeValueBy(2m); // 6 → 8
-        }
-    }
+	protected override global::System.Collections.Generic.IEnumerable<DynamicVar> CanonicalVars => (global::System.Collections.Generic.IEnumerable<DynamicVar>)(object)new DynamicVar[3]
+	{
+		(DynamicVar)new IntVar("Foxfire", 2m),
+		(DynamicVar)new IntVar("Hits", 2m),
+		(DynamicVar)new IntVar("ChaseDamage", 6m)
+	};
+
+	public override int MaxUpgradeLevel => 2;
+
+	public override int FoxFireCost => ((CardModel)this).DynamicVars["Foxfire"].IntValue;
+
+	public ChaseChase()
+		: base(2, (CardType)1, (CardRarity)2, (TargetType)2)
+	{
+	}
+
+	[AsyncStateMachine(typeof(_003COnPlay_003Ed__7))]
+	protected override global::System.Threading.Tasks.Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_003COnPlay_003Ed__7 _003COnPlay_003Ed__8 = default(_003COnPlay_003Ed__7);
+		_003COnPlay_003Ed__8._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
+		_003COnPlay_003Ed__8._003C_003E4__this = this;
+		_003COnPlay_003Ed__8.choiceContext = choiceContext;
+		_003COnPlay_003Ed__8.cardPlay = cardPlay;
+		_003COnPlay_003Ed__8._003C_003E1__state = -1;
+		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Start<_003COnPlay_003Ed__7>(ref _003COnPlay_003Ed__8);
+		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Task;
+	}
+
+	protected override void OnUpgrade()
+	{
+		if (((CardModel)this).CurrentUpgradeLevel != 1 && ((CardModel)this).CurrentUpgradeLevel == 2)
+		{
+			((CardModel)this).EnergyCost.UpgradeBy(1);
+			((CardModel)this).DynamicVars["Foxfire"].UpgradeValueBy(-1m);
+			((CardModel)this).DynamicVars["Hits"].UpgradeValueBy(2m);
+			((CardModel)this).DynamicVars["ChaseDamage"].UpgradeValueBy(2m);
+		}
+	}
 }

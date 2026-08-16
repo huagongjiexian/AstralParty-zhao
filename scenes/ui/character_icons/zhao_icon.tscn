@@ -1,8 +1,10 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Texture2D" path="res://zhao/images/ui/zhao_character_placeholder.png" id="1_icon"]
+[ext_resource type="Texture2D" uid="uid://bpueo02rqsslv" path="res://zhao/images/ui/zhao_character_placeholder.png" id="1"]
 
 [node name="ZhaoIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -12,6 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_icon")
+texture = ExtResource("1")
 expand_mode = 1
 stretch_mode = 5

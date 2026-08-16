@@ -1,40 +1,35 @@
+using System.Collections;
 using System.Linq;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using Zhao.Character;
 using Zhao.FoxFire;
 
 namespace Zhao.Patches;
 
-/// <summary>
-/// 狐火计数器 UI 挂载:0.107.1 星辉计数器同架构(参考 NCombatUi.Activate 内的
-/// _starCounter.Initialize(me) → Reparent 到能量计数器)。
-/// 在 Activate 完成后为「照」创建 NFoxFireCounter 并挂到能量计数器上(与星辉计数器同位置、同层级)。
-/// </summary>
-[HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
+[HarmonyPatch(typeof(NCombatUi), "Activate")]
 public static class ZhaoCombatUiPatch
 {
-    private static void Postfix(NCombatUi __instance, CombatState state)
-    {
-        var me = LocalContext.GetMe(state);
-        if (me?.Character is not ZhaoCharacter)
-        {
-            return;
-        }
-        var container = __instance.EnergyCounterContainer;
-        var energyCounter = container?.GetChildren().OfType<NEnergyCounter>().FirstOrDefault();
-        if (energyCounter == null)
-        {
-            return;
-        }
-        // 防重复创建:NCombatUi.Activate 可能多次执行(重复进入战斗 UI),已有计数器则跳过
-        if (energyCounter.GetChildren().OfType<NFoxFireCounter>().Any())
-        {
-            return;
-        }
-        var counter = NFoxFireCounter.Create(me);
-        energyCounter.AddChild(counter);
-    }
+	private static void Postfix(NCombatUi __instance, CombatState state)
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Expected O, but got Unknown
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Expected O, but got Unknown
+		Player me = LocalContext.GetMe((ICombatState)state);
+		if (((me != null) ? me.Character : null) is ZhaoCharacter)
+		{
+			Control energyCounterContainer = __instance.EnergyCounterContainer;
+			NEnergyCounter val = ((energyCounterContainer != null) ? Enumerable.FirstOrDefault<NEnergyCounter>(Enumerable.OfType<NEnergyCounter>((global::System.Collections.IEnumerable)((Node)energyCounterContainer).GetChildren(false))) : null);
+			if (val != null && !Enumerable.Any<NFoxFireCounter>(Enumerable.OfType<NFoxFireCounter>((global::System.Collections.IEnumerable)((Node)val).GetChildren(false))))
+			{
+				NFoxFireCounter nFoxFireCounter = NFoxFireCounter.Create(me);
+				((Node)val).AddChild((Node)nFoxFireCounter, false, (InternalMode)0);
+			}
+		}
+	}
 }

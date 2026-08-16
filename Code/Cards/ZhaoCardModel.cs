@@ -1,3 +1,8 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
@@ -6,84 +11,135 @@ using Zhao.FoxFire;
 
 namespace Zhao.Cards;
 
-/// <summary>
-/// 「照」全部正式卡牌的基类。0.107.1 原版机制映射:
-///  - FoxFireCost:狐火支付成本,对应原版 CanonicalStarCost(默认 0=不支付,由 ZhaoFoxFireCombatHooks 在出牌管线中支付);
-///  - IsPlayable:狐火不足时卡牌不可使用,对应原版 PlayerCombatState.HasEnoughResourcesFor 的星辉闸门(UnplayableReason.StarCostTooHigh);
-///  - OnTransformAfterPlay:打出结算完成(结果牌堆移动之后)再执行的转化 —— 0.107.1 没有"打出过程中自转化"先例
-///    (原版 Charge/Seance 只转化其他卡):若在 OnPlay 内转化当前卡,原卡被 RemoveFromCurrentPile + RemoveFromState,
-///    OnPlayWrapper 尾部的结果牌堆移动被跳过,NCard 遗留在 PlayContainer(屏幕中央)造成"出牌后悬浮"。
-///    因此借助原版 Played 事件(OnPlayWrapper 末尾、结果堆移动之后触发)执行转化,与原版生命周期一致。
-///  - PortraitPath/BetaPortraitPath:指向模组占位卡图(⚠️ 正式美术待用户提供),替代原版 card_atlas 缺失时的 BETA 占位。
-/// </summary>
 public abstract class ZhaoCardModel : CardModel
 {
-    /// <summary>模组卡图占位(未提供正式美术,明确占位状态)。</summary>
-    private const string CardPortraitPlaceholder = "res://zhao/images/cards/zhao_card_placeholder.png";
+	[StructLayout((LayoutKind)3)]
+	[CompilerGenerated]
+	private struct _003CRunTransformAfterPlay_003Ed__13 : IAsyncStateMachine
+	{
+		public int _003C_003E1__state;
 
-    protected ZhaoCardModel(int energyCost, CardType type, CardRarity rarity, TargetType target)
-        : base(energyCost, type, rarity, target)
-    {
-    }
+		public AsyncTaskMethodBuilder _003C_003Et__builder;
 
-    /// <summary>
-    /// 战斗实例创建后订阅 Played 事件(转化时机钩子)。
-    /// ⚠️ 不能在构造函数里订阅:本体 CardModel.DeepCloneFields 会清空克隆体的事件(Played = null),
-    /// 构造函数订阅只存在于 canonical 上,真正打出的战斗克隆收不到事件。AfterCreated 在
-    /// CombatState 创建战斗卡后调用(0.107.1 反编译 CombatState.CreateCard → cardModel.AfterCreated()),
-    /// 此时订阅绑定的是实际打出的实例。
-    /// </summary>
-    public override void AfterCreated()
-    {
-        base.AfterCreated();
-        Played += OnPlayedFinalize;
-    }
+		public ZhaoCardModel _003C_003E4__this;
 
-    /// <summary>狐火支付成本(0=不支付)。对应原版 CanonicalStarCost(默认 -1=不参与)。</summary>
-    public virtual int FoxFireCost => 0;
+		private TaskAwaiter _003C_003Eu__1;
 
-    /// <summary>
-    /// 狐火不足时不可使用。对应原版星辉:PlayerCombatState.HasEnoughResourcesFor →
-    /// UnplayableReason.StarCostTooHigh。子类覆写 IsPlayable 时必须与 base.IsPlayable 结合。
-    /// </summary>
-    protected override bool IsPlayable
-    {
-        get
-        {
-            if (Owner != null && FoxFireCost > 0 && FoxFireCmd.Get(Owner) < FoxFireCost)
-            {
-                return false;
-            }
-            return base.IsPlayable;
-        }
-    }
+		private void MoveNext()
+		{
+			//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+			int num = _003C_003E1__state;
+			ZhaoCardModel zhaoCardModel = _003C_003E4__this;
+			try
+			{
+				TaskAwaiter val;
+				if (num == 0)
+				{
+					val = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+					goto IL_0067;
+				}
+				global::System.Threading.Tasks.Task task = zhaoCardModel.OnTransformAfterPlay();
+				if (task != null)
+				{
+					val = task.GetAwaiter();
+					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 0);
+						_003C_003Eu__1 = val;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CRunTransformAfterPlay_003Ed__13>(ref val, ref this);
+						return;
+					}
+					goto IL_0067;
+				}
+				goto end_IL_000e;
+				IL_0067:
+				((TaskAwaiter)(ref val)).GetResult();
+				end_IL_000e:;
+			}
+			catch (global::System.Exception exception)
+			{
+				_003C_003E1__state = -2;
+				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				return;
+			}
+			_003C_003E1__state = -2;
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+		}
 
-    /// <summary>
-    /// 打出结算完成后要执行的转化任务(默认 null=不转化)。
-    /// 由 Played 事件触发,此时原卡已完成原版"手牌→打出→结果牌堆"视觉生命周期。
-    /// </summary>
-    protected virtual Task? OnTransformAfterPlay() => null;
+		[DebuggerHidden]
+		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		{
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+		}
+	}
 
-    private void OnPlayedFinalize()
-    {
-        if (CombatManager.Instance.IsOverOrEnding)
-        {
-            return;
-        }
-        TaskHelper.RunSafely(RunTransformAfterPlay());
-    }
+	private const string CardPortraitPlaceholder = "res://zhao/images/cards/zhao_card_placeholder.png";
 
-    private async Task RunTransformAfterPlay()
-    {
-        var task = OnTransformAfterPlay();
-        if (task != null)
-        {
-            await task;
-        }
-    }
+	public virtual int FoxFireCost => 0;
 
-    // ---------- 卡图占位(替代原版 card_atlas 缺失时的 BETA 占位图) ----------
-    public override string PortraitPath => CardPortraitPlaceholder;
+	protected override bool IsPlayable
+	{
+		get
+		{
+			if (((CardModel)this).Owner != null && FoxFireCost > 0 && FoxFireCmd.Get(((CardModel)this).Owner) < FoxFireCost)
+			{
+				return false;
+			}
+			return ((CardModel)this).IsPlayable;
+		}
+	}
 
-    public override string BetaPortraitPath => CardPortraitPlaceholder;
+	public override string PortraitPath => "res://zhao/images/cards/zhao_card_placeholder.png";
+
+	public override string BetaPortraitPath => "res://zhao/images/cards/zhao_card_placeholder.png";
+
+	protected ZhaoCardModel(int energyCost, CardType type, CardRarity rarity, TargetType target)
+		: base(energyCost, type, rarity, target, true)
+	{
+	}//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+	//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+	//IL_0004: Unknown result type (might be due to invalid IL or missing references)
+
+
+	public override void AfterCreated()
+	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Expected O, but got Unknown
+		((CardModel)this).AfterCreated();
+		((CardModel)this).Played += new Action(OnPlayedFinalize);
+	}
+
+	protected virtual global::System.Threading.Tasks.Task? OnTransformAfterPlay()
+	{
+		return null;
+	}
+
+	private void OnPlayedFinalize()
+	{
+		if (!CombatManager.Instance.IsOverOrEnding)
+		{
+			TaskHelper.RunSafely(RunTransformAfterPlay());
+		}
+	}
+
+	[AsyncStateMachine(typeof(_003CRunTransformAfterPlay_003Ed__13))]
+	private global::System.Threading.Tasks.Task RunTransformAfterPlay()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_003CRunTransformAfterPlay_003Ed__13 _003CRunTransformAfterPlay_003Ed__14 = default(_003CRunTransformAfterPlay_003Ed__13);
+		_003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
+		_003CRunTransformAfterPlay_003Ed__14._003C_003E4__this = this;
+		_003CRunTransformAfterPlay_003Ed__14._003C_003E1__state = -1;
+		((AsyncTaskMethodBuilder)(ref _003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder)).Start<_003CRunTransformAfterPlay_003Ed__13>(ref _003CRunTransformAfterPlay_003Ed__14);
+		return ((AsyncTaskMethodBuilder)(ref _003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder)).Task;
+	}
 }

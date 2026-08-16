@@ -1,142 +1,159 @@
+using System;
+using System.Runtime.CompilerServices;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Zhao.Forms;
 
-/// <summary>
-/// 歌姬形态常态视频背景。
-/// - 位置:以「照」角色的稳定战斗锚点(NCreature 节点在战斗画布中的位置)为水平参考,
-///   视频水平中心与角色视觉中心对齐,整体悬挂在角色正上方(屏幕顶部);不写死任何屏幕像素坐标,
-///   经画布变换(GetGlobalTransform)转换,随分辨率/镜头缩放自适应;
-/// - 挂载点:本体战斗房间的 BackCombatVfxContainer(后层特效容器)——位于战斗 UI 与角色之下,
-///   不遮挡卡牌/能量/血量/Buff/敌人状态;ZIndex 未改;
-/// - 尺寸:保持视频原生大小(ExpandKeepSize),不放大、不裁切、不改长宽比;
-/// - 循环播放:VideoStreamPlayer.Loop = true;
-/// - 生命周期:单一播放器节点,进入歌姬时显示并继续播放,离开歌姬时暂停并隐藏(不重建、不重头播放);
-///   战斗结束随战斗房间一起销毁,静态引用经 Hook.AfterCombatEnd 补丁清理。
-/// - 视频资源:res://zhao/video/diva_bg.ogv(Theora;源为哈希包内 USM,未修改内容,仅容器转码)。
-/// </summary>
 public static class DivaVideoBackground
 {
-    private const string VideoPath = "res://zhao/video/diva_bg.ogv";
+	[CompilerGenerated]
+	private static class _003C_003EO
+	{
+		public static Action _003C0_003E__OnVideoResized;
+	}
 
-    /// <summary>视频内容的原生宽度(源 USM 重建产物,固定内容尺寸,非屏幕分辨率)。</summary>
-    private const float NativeVideoWidth = 1024f;
+	private const string VideoPath = "res://zhao/video/diva_bg.ogv";
 
-    private static VideoStreamPlayer? _player;
-    private static VideoStreamTheora? _stream;
+	private const float NativeVideoWidth = 1024f;
 
-    /// <summary>最近一次进入歌姬形态时的角色引用(视频纹理定尺寸后重算位置用)。</summary>
-    private static Creature? _lastCreature;
+	private static VideoStreamPlayer? _player;
 
-    /// <summary>进入歌姬形态:显示并(继续)循环播放。重复调用安全,不会创建第二个播放器。</summary>
-    public static void ShowForDivaForm(Creature creature)
-    {
-        var room = NCombatRoom.Instance;
-        if (room == null || !GodotObject.IsInstanceValid(room))
-        {
-            return;
-        }
-        var container = room.BackCombatVfxContainer;
-        if (container == null || !GodotObject.IsInstanceValid(container))
-        {
-            return;
-        }
+	private static VideoStreamTheora? _stream;
 
-        _lastCreature = creature;
+	private static Creature? _lastCreature;
 
-        if (_player == null || !GodotObject.IsInstanceValid(_player))
-        {
-            _stream ??= GD.Load<VideoStreamTheora>(VideoPath);
-            if (_stream == null)
-            {
-                return;
-            }
+	public static void ShowForDivaForm(Creature creature)
+	{
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Expected O, but got Unknown
+		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002c: Expected O, but got Unknown
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Expected O, but got Unknown
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Expected O, but got Unknown
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Expected O, but got Unknown
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Expected O, but got Unknown
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Expected O, but got Unknown
+		NCombatRoom instance = NCombatRoom.Instance;
+		if (instance == null || !GodotObject.IsInstanceValid((GodotObject)instance))
+		{
+			return;
+		}
+		Control backCombatVfxContainer = instance.BackCombatVfxContainer;
+		if (backCombatVfxContainer == null || !GodotObject.IsInstanceValid((GodotObject)backCombatVfxContainer))
+		{
+			return;
+		}
+		_lastCreature = creature;
+		if (_player == null || !GodotObject.IsInstanceValid((GodotObject)_player))
+		{
+			if (_stream == null)
+			{
+				_stream = GD.Load<VideoStreamTheora>("res://zhao/video/diva_bg.ogv");
+			}
+			if (_stream == null)
+			{
+				return;
+			}
+			_player = new VideoStreamPlayer
+			{
+				Stream = (VideoStream)_stream,
+				Loop = true,
+				MouseFilter = (MouseFilterEnum)2,
+				Visible = false
+			};
+			((Control)_player).SetAnchorsPreset((LayoutPreset)0, false);
+			((Control)_player).GrowHorizontal = (GrowDirection)1;
+			((Control)_player).GrowVertical = (GrowDirection)1;
+			VideoStreamPlayer? player = _player;
+			object obj = _003C_003EO._003C0_003E__OnVideoResized;
+			if (obj == null)
+			{
+				Action val = OnVideoResized;
+				_003C_003EO._003C0_003E__OnVideoResized = val;
+				obj = (object)val;
+			}
+			((Control)player).Resized += (Action)obj;
+			((Node)backCombatVfxContainer).AddChild((Node)_player, false, (InternalMode)0);
+		}
+		UpdatePosition(creature);
+		((CanvasItem)_player).Visible = true;
+		if (!_player.IsPlaying())
+		{
+			_player.Play();
+		}
+	}
 
-            _player = new VideoStreamPlayer
-            {
-                Stream = _stream,
-                Loop = true,
-                MouseFilter = Control.MouseFilterEnum.Ignore,
-                Visible = false,
-            };
-            // 左上锚定(anchors 0/0),位置完全由 UpdatePosition 按角色锚点计算
-            _player.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
-            _player.GrowHorizontal = Control.GrowDirection.End;
-            _player.GrowVertical = Control.GrowDirection.End;
-            // 视频纹理定尺寸后重算一次位置(此时 Size.X 为真实原生宽,不再依赖预置常量)
-            _player.Resized += OnVideoResized;
+	private static void OnVideoResized()
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Expected O, but got Unknown
+		if (_lastCreature != null && GodotObject.IsInstanceValid((GodotObject)_player))
+		{
+			UpdatePosition(_lastCreature);
+		}
+	}
 
-            container.AddChild(_player);
-        }
+	private static void UpdatePosition(Creature creature)
+	{
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Expected O, but got Unknown
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0056: Expected O, but got Unknown
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Expected O, but got Unknown
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		if (_player != null && GodotObject.IsInstanceValid((GodotObject)_player))
+		{
+			NCombatRoom instance = NCombatRoom.Instance;
+			Control val = ((instance != null) ? instance.BackCombatVfxContainer : null);
+			NCreature val2 = ((instance != null) ? instance.GetCreatureNode(creature) : null);
+			if (instance != null && val != null && GodotObject.IsInstanceValid((GodotObject)val) && val2 != null && GodotObject.IsInstanceValid((GodotObject)val2))
+			{
+				Transform2D globalTransform = ((CanvasItem)val).GetGlobalTransform();
+				Vector2 val3 = ((Transform2D)(ref globalTransform)).AffineInverse() * ((Control)val2).GlobalPosition;
+				float num = ((((Control)_player).Size.X > 0f) ? ((Control)_player).Size.X : 1024f);
+				((Control)_player).Position = new Vector2(val3.X - num * 0.5f, 0f);
+			}
+		}
+	}
 
-        UpdatePosition(creature);
+	public static void HideFromDivaForm()
+	{
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0016: Expected O, but got Unknown
+		if (_player != null && GodotObject.IsInstanceValid((GodotObject)_player))
+		{
+			_player.Paused = true;
+			((CanvasItem)_player).Visible = false;
+		}
+	}
 
-        _player.Visible = true;
-        if (!_player.IsPlaying())
-        {
-            _player.Play();
-        }
-    }
-
-    /// <summary>视频尺寸确定后按角色锚点重算位置。</summary>
-    private static void OnVideoResized()
-    {
-        if (_lastCreature == null || !GodotObject.IsInstanceValid(_player))
-        {
-            return;
-        }
-        UpdatePosition(_lastCreature);
-    }
-
-    /// <summary>
-    /// 按角色稳定战斗锚点定位视频:
-    /// 读取 Zhao 玩家 NCreature 节点在战斗画布中的位置(稳定基准,不逐帧跟随攻击动画),
-    /// 经容器画布变换转换到 BackCombatVfxContainer 局部坐标,
-    /// 视频水平中心与角色视觉中心对齐;垂直方向保持在屏幕顶部(悬挂于角色上方,不遮挡主体)。
-    /// </summary>
-    private static void UpdatePosition(Creature creature)
-    {
-        if (_player == null || !GodotObject.IsInstanceValid(_player))
-        {
-            return;
-        }
-        var room = NCombatRoom.Instance;
-        var container = room?.BackCombatVfxContainer;
-        var creatureNode = room?.GetCreatureNode(creature);
-        if (room == null || container == null || !GodotObject.IsInstanceValid(container) ||
-            creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
-        {
-            return;
-        }
-
-        // 角色战斗锚点(画布坐标)→ 视频容器局部坐标
-        Vector2 anchorInContainer = container.GetGlobalTransform().AffineInverse() * creatureNode.GlobalPosition;
-
-        // 视频原生宽度(尺寸已布局时用实际值,内容尺寸固定)
-        float videoWidth = _player.Size.X > 0f ? _player.Size.X : NativeVideoWidth;
-
-        // 水平中心与角色视觉中心对齐;顶部悬挂(与之前的垂直位置保持一致)
-        _player.Position = new Vector2(anchorInContainer.X - videoWidth * 0.5f, 0f);
-    }
-
-    /// <summary>离开歌姬形态:暂停并隐藏(保留播放位置,再次进入时继续,不重建播放器)。</summary>
-    public static void HideFromDivaForm()
-    {
-        if (_player == null || !GodotObject.IsInstanceValid(_player))
-        {
-            return;
-        }
-        _player.Paused = true;
-        _player.Visible = false;
-    }
-
-    /// <summary>战斗结束:清理静态引用(节点本身随战斗房间销毁)。</summary>
-    public static void CleanupCombat()
-    {
-        _player = null;
-        _stream = null;
-        _lastCreature = null;
-    }
+	public static void CleanupCombat()
+	{
+		_player = null;
+		_stream = null;
+		_lastCreature = null;
+	}
 }

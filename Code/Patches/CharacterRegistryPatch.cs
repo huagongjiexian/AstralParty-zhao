@@ -1,21 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using Zhao.Character;
 
 namespace Zhao.Patches;
 
-/// <summary>
-/// 本体 ModelDb.AllCharacters 是硬编码数组(不扫描模组程序集)。
-/// 此处用 Harmony 后置补丁把角色「照」注入返回结果。
-/// </summary>
-[HarmonyPatch(typeof(ModelDb), nameof(ModelDb.AllCharacters), MethodType.Getter)]
+[HarmonyPatch(/*Could not decode attribute arguments.*/)]
 public static class CharacterRegistryPatch
 {
-    private static void Postfix(ref IEnumerable<CharacterModel> __result)
-    {
-        if (__result.Any(c => c is ZhaoCharacter))
-            return;
-
-        __result = __result.Append(ModelDb.Character<ZhaoCharacter>());
-    }
+	private static void Postfix(ref global::System.Collections.Generic.IEnumerable<CharacterModel> __result)
+	{
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Expected O, but got Unknown
+		if (!Enumerable.Any<CharacterModel>(__result, (Func<CharacterModel, bool>)((CharacterModel c) => c is ZhaoCharacter)))
+		{
+			__result = Enumerable.Append<CharacterModel>(__result, (CharacterModel)ModelDb.Character<ZhaoCharacter>());
+		}
+	}
 }

@@ -1,52 +1,186 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Zhao.Forms;
 
 namespace Zhao.Cards;
 
-/// <summary>
-/// セクション(段落)·イントロ(前奏)(初始卡1张)。技能牌(⚠️ 类型为默认解释)。
-/// 基础:1费,歌姬形态时不可使用。使用:进入歌姬形态,获得段落·前奏(抽1张牌),该卡转化为主歌。
-/// 强化:前奏 1费→主歌;前奏+ 0费→主歌+;前奏++ 0费→主歌++。
-/// 转化时机(0.0.6 修复):不在 OnPlay 内转化"正在打出的这张卡"——那会跳过原版结果牌堆移动,
-/// 使 NCard 遗留在 PlayContainer 屏幕中央。改为经 ZhaoCardModel.OnTransformAfterPlay,
-/// 在本体 Played 事件(结果堆移动之后)触发,与原版出牌视觉生命周期一致。
-/// </summary>
 public sealed class SectionIntro : ZhaoCardModel
 {
-    public SectionIntro() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
-    {
-    }
+	[StructLayout((LayoutKind)3)]
+	[CompilerGenerated]
+	private struct _003COnPlay_003Ed__5 : IAsyncStateMachine
+	{
+		public int _003C_003E1__state;
 
-    public override int MaxUpgradeLevel => 2;
+		public AsyncTaskMethodBuilder _003C_003Et__builder;
 
-    protected override bool IsPlayable =>
-        base.IsPlayable &&
-        FormSystem.GetCurrentForm(base.Owner.Creature) != ZhaoForm.Diva;
+		public SectionIntro _003C_003E4__this;
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        var creature = base.Owner.Creature;
+		public PlayerChoiceContext choiceContext;
 
-        // 进入歌姬形态
-        await FormSystem.SwitchForm(choiceContext, creature, ZhaoForm.Diva);
+		private Creature _003Ccreature_003E5__2;
 
-        // 获得段落·前奏
-        await FormSystem.SetStage(choiceContext, creature, SectionStage.Intro);
+		private TaskAwaiter _003C_003Eu__1;
 
-        // 获得前奏时:抽1张牌(前奏Buff)
-        await CardPileCmd.Draw(choiceContext, 1, base.Owner);
-    }
+		private TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>> _003C_003Eu__2;
 
-    protected override Task? OnTransformAfterPlay() => TransformHelper.TransformInto<SectionMain>(this);
+		private void MoveNext()
+		{
+			//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+			//IL_014b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0152: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+			//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+			int num = _003C_003E1__state;
+			SectionIntro sectionIntro = _003C_003E4__this;
+			try
+			{
+				TaskAwaiter val2;
+				TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>> val;
+				switch (num)
+				{
+				default:
+					_003Ccreature_003E5__2 = ((CardModel)sectionIntro).Owner.Creature;
+					val2 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Diva).GetAwaiter();
+					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 0);
+						_003C_003Eu__1 = val2;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
+						return;
+					}
+					goto IL_0091;
+				case 0:
+					val2 = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+					goto IL_0091;
+				case 1:
+					val2 = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+					goto IL_00f8;
+				case 2:
+					{
+						val = _003C_003Eu__2;
+						_003C_003Eu__2 = default(TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>);
+						num = (_003C_003E1__state = -1);
+						break;
+					}
+					IL_00f8:
+					((TaskAwaiter)(ref val2)).GetResult();
+					val = CardPileCmd.Draw(choiceContext, 1m, ((CardModel)sectionIntro).Owner, false).GetAwaiter();
+					if (!val.IsCompleted)
+					{
+						num = (_003C_003E1__state = 2);
+						_003C_003Eu__2 = val;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>, _003COnPlay_003Ed__5>(ref val, ref this);
+						return;
+					}
+					break;
+					IL_0091:
+					((TaskAwaiter)(ref val2)).GetResult();
+					val2 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Intro).GetAwaiter();
+					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 1);
+						_003C_003Eu__1 = val2;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
+						return;
+					}
+					goto IL_00f8;
+				}
+				val.GetResult();
+			}
+			catch (global::System.Exception exception)
+			{
+				_003C_003E1__state = -2;
+				_003Ccreature_003E5__2 = null;
+				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				return;
+			}
+			_003C_003E1__state = -2;
+			_003Ccreature_003E5__2 = null;
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+		}
 
-    protected override void OnUpgrade()
-    {
-        if (base.CurrentUpgradeLevel == 1)
-        {
-            // 基础1费 → +0费(++保持0费)
-            base.EnergyCost.UpgradeBy(-1);
-        }
-    }
+		[DebuggerHidden]
+		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		{
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+		}
+	}
+
+	public override int MaxUpgradeLevel => 2;
+
+	protected override bool IsPlayable
+	{
+		get
+		{
+			if (base.IsPlayable)
+			{
+				return FormSystem.GetCurrentForm(((CardModel)this).Owner.Creature) != ZhaoForm.Diva;
+			}
+			return false;
+		}
+	}
+
+	public SectionIntro()
+		: base(1, (CardType)2, (CardRarity)1, (TargetType)1)
+	{
+	}
+
+	[AsyncStateMachine(typeof(_003COnPlay_003Ed__5))]
+	protected override global::System.Threading.Tasks.Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_003COnPlay_003Ed__5 _003COnPlay_003Ed__6 = default(_003COnPlay_003Ed__5);
+		_003COnPlay_003Ed__6._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
+		_003COnPlay_003Ed__6._003C_003E4__this = this;
+		_003COnPlay_003Ed__6.choiceContext = choiceContext;
+		_003COnPlay_003Ed__6._003C_003E1__state = -1;
+		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
+		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Task;
+	}
+
+	protected override global::System.Threading.Tasks.Task? OnTransformAfterPlay()
+	{
+		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000b: Expected O, but got Unknown
+		return TransformHelper.TransformInto<SectionMain>((CardModel)this);
+	}
+
+	protected override void OnUpgrade()
+	{
+		if (((CardModel)this).CurrentUpgradeLevel == 1)
+		{
+			((CardModel)this).EnergyCost.UpgradeBy(-1);
+		}
+	}
 }

@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3]
 
-[ext_resource type="Texture2D" path="res://zhao/images/char_select_carousel/1.png" id="1_img"]
-[ext_resource type="Texture2D" path="res://zhao/images/char_select_carousel/2.png" id="2_img"]
-[ext_resource type="Texture2D" path="res://zhao/images/char_select_carousel/3.png" id="3_img"]
-[ext_resource type="Texture2D" path="res://zhao/images/char_select_carousel/4.png" id="4_img"]
+[ext_resource type="Texture2D" uid="uid://bcvlutblx24yh" path="res://zhao/images/char_select_carousel/1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dr8ywtaj4urqq" path="res://zhao/images/char_select_carousel/2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://coaseo1ekx2wg" path="res://zhao/images/char_select_carousel/3.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bfxogyjcwthwx" path="res://zhao/images/char_select_carousel/4.png" id="4"]
 
 [sub_resource type="Animation" id="Animation_carousel"]
-resource_name = &"Carousel"
+resource_name = "Carousel"
 length = 10.0
 loop_mode = 1
 step = 0.0
@@ -20,16 +20,15 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2.5, 5, 7.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_img"), ExtResource("2_img"), ExtResource("3_img"), ExtResource("4_img")]
+"values": [ExtResource("1"), ExtResource("2"), ExtResource("3"), ExtResource("4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
 _data = {
-"Carousel": SubResource("Animation_carousel")
+&"Carousel": SubResource("Animation_carousel")
 }
 
 [node name="ZhaoBg" type="Control"]
-mouse_filter = 2
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,6 +42,7 @@ offset_bottom = 677.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(1280, 600)
+mouse_filter = 2
 
 [node name="Carousel" type="TextureRect" parent="."]
 layout_mode = 1
@@ -52,11 +52,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_img")
+texture = ExtResource("1")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="CarouselAnim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_main")
+&"": SubResource("AnimationLibrary_main")
 }

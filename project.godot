@@ -1,16 +1,30 @@
-; Godot 工程配置(用于把 Resources/ 导出为 zhao.pck;版本 4.5 与游戏本体一致)
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
+
+_custom_features="dotnet"
 
 [application]
 
 config/name="zhao"
 config/version="0.0.15"
-config/features=PackedStringArray("4.5")
+config/features=PackedStringArray("4.5", "C#")
 config/icon="res://zhao/mod_image.png"
 
 [dotnet]
 
 project/assembly_name="zhao"
+
+[editor_overrides]
+
+text_editor/behavior/indent/type=0
+text_editor/behavior/indent/size=4
 
 [rendering]
 

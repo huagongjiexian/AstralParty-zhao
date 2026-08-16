@@ -1,50 +1,171 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Zhao.Forms;
 using Zhao.Powers;
 
 namespace Zhao.Cards;
 
-/// <summary>
-/// 光よ！稀有,3费。用户决定:技能牌。仅淑女形态可以使用。
-/// 消耗所有光,造成(消耗光数量 × 2)的伤害。
-/// ⚠️ 目标未定义:默认可指定敌人(TargetType.AnyEnemy),伤害打所选目标。
-/// +/++:规格未定义 → 暂无效果(TODO)。
-/// </summary>
 public sealed class LightYo : ZhaoCardModel
 {
-    public LightYo() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
-    {
-    }
+	[StructLayout((LayoutKind)3)]
+	[CompilerGenerated]
+	private struct _003COnPlay_003Ed__3 : IAsyncStateMachine
+	{
+		public int _003C_003E1__state;
 
-    protected override bool IsPlayable =>
-        base.IsPlayable &&
-        FormSystem.GetCurrentForm(base.Owner.Creature) == ZhaoForm.Lady;
+		public AsyncTaskMethodBuilder _003C_003Et__builder;
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        var creature = base.Owner.Creature;
+		public CardPlay cardPlay;
 
-        // 消耗所有光
-        int light = creature.GetPowerAmount<LightPower>();
-        if (light > 0)
-        {
-            await PowerCmd.Remove<LightPower>(creature);
-        }
+		public LightYo _003C_003E4__this;
 
-        // 伤害 = 消耗光数量 × 2
-        if (light > 0)
-        {
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, light * 2m, ValueProp.Move, creature, this);
-        }
-    }
+		public PlayerChoiceContext choiceContext;
 
-    // TODO: 光よ!+/++ 效果 —— 用户未给数值,不得自行补。
-    protected override void OnUpgrade()
-    {
-    }
+		private Creature _003Ccreature_003E5__2;
+
+		private int _003Clight_003E5__3;
+
+		private TaskAwaiter _003C_003Eu__1;
+
+		private TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>> _003C_003Eu__2;
+
+		private void MoveNext()
+		{
+			//IL_0099: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0135: Unknown result type (might be due to invalid IL or missing references)
+			//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0100: Expected O, but got Unknown
+			//IL_0100: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
+			//IL_007f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+			//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+			int num = _003C_003E1__state;
+			LightYo lightYo = _003C_003E4__this;
+			try
+			{
+				TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>> val;
+				TaskAwaiter val2;
+				if (num != 0)
+				{
+					if (num == 1)
+					{
+						val = _003C_003Eu__2;
+						_003C_003Eu__2 = default(TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>);
+						num = (_003C_003E1__state = -1);
+						goto IL_014b;
+					}
+					ArgumentNullException.ThrowIfNull((object)cardPlay.Target, "cardPlay.Target");
+					_003Ccreature_003E5__2 = ((CardModel)lightYo).Owner.Creature;
+					_003Clight_003E5__3 = _003Ccreature_003E5__2.GetPowerAmount<LightPower>();
+					if (_003Clight_003E5__3 <= 0)
+					{
+						goto IL_00bb;
+					}
+					val2 = PowerCmd.Remove<LightPower>(_003Ccreature_003E5__2).GetAwaiter();
+					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					{
+						num = (_003C_003E1__state = 0);
+						_003C_003Eu__1 = val2;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__3>(ref val2, ref this);
+						return;
+					}
+				}
+				else
+				{
+					val2 = _003C_003Eu__1;
+					_003C_003Eu__1 = default(TaskAwaiter);
+					num = (_003C_003E1__state = -1);
+				}
+				((TaskAwaiter)(ref val2)).GetResult();
+				goto IL_00bb;
+				IL_014b:
+				val.GetResult();
+				goto end_IL_000e;
+				IL_00bb:
+				if (_003Clight_003E5__3 > 0)
+				{
+					val = CreatureCmd.Damage(choiceContext, cardPlay.Target, decimal.op_Implicit(_003Clight_003E5__3) * 2m, (ValueProp)8, _003Ccreature_003E5__2, (CardModel)lightYo).GetAwaiter();
+					if (!val.IsCompleted)
+					{
+						num = (_003C_003E1__state = 1);
+						_003C_003Eu__2 = val;
+						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>, _003COnPlay_003Ed__3>(ref val, ref this);
+						return;
+					}
+					goto IL_014b;
+				}
+				end_IL_000e:;
+			}
+			catch (global::System.Exception exception)
+			{
+				_003C_003E1__state = -2;
+				_003Ccreature_003E5__2 = null;
+				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				return;
+			}
+			_003C_003E1__state = -2;
+			_003Ccreature_003E5__2 = null;
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+		}
+
+		[DebuggerHidden]
+		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		{
+			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+		}
+	}
+
+	protected override bool IsPlayable
+	{
+		get
+		{
+			if (base.IsPlayable)
+			{
+				return FormSystem.GetCurrentForm(((CardModel)this).Owner.Creature) == ZhaoForm.Lady;
+			}
+			return false;
+		}
+	}
+
+	public LightYo()
+		: base(3, (CardType)2, (CardRarity)4, (TargetType)2)
+	{
+	}
+
+	[AsyncStateMachine(typeof(_003COnPlay_003Ed__3))]
+	protected override global::System.Threading.Tasks.Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		_003COnPlay_003Ed__3 _003COnPlay_003Ed__4 = default(_003COnPlay_003Ed__3);
+		_003COnPlay_003Ed__4._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
+		_003COnPlay_003Ed__4._003C_003E4__this = this;
+		_003COnPlay_003Ed__4.choiceContext = choiceContext;
+		_003COnPlay_003Ed__4.cardPlay = cardPlay;
+		_003COnPlay_003Ed__4._003C_003E1__state = -1;
+		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Start<_003COnPlay_003Ed__3>(ref _003COnPlay_003Ed__4);
+		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Task;
+	}
+
+	protected override void OnUpgrade()
+	{
+	}
 }
