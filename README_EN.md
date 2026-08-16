@@ -13,7 +13,7 @@ Zhao is an original character mod for **Slay the Spire 2**. She switches freely 
 
 ## Download & Install
 
-Grab the latest package from [Releases](https://github.com/huagongjiexian/AstralParty-zhao/releases) (`zhao-0.0.15.zip`), or take the three files directly from the `发布/` directory.
+Grab the latest package from [Releases](https://github.com/huagongjiexian/AstralParty-zhao/releases) (`zhao-0.0.16.7.zip`), or take the three files directly from the `发布/` directory.
 
 1. Unzip to get `zhao.dll`, `zhao.json`, and `zhao.pck`
 2. Place the three files into the game's `mods\zhao\` folder (create it if it does not exist)
@@ -24,7 +24,7 @@ Grab the latest package from [Releases](https://github.com/huagongjiexian/Astral
 | Field | Value |
 |---|---|
 | Mod id | `zhao` |
-| Version | `0.0.15` |
+| Version | `0.0.16.7` |
 | Author | 喵小照 (Miao Xiao Zhao) |
 | Target game | Slay the Spire 2 `0.107.1` |
 
