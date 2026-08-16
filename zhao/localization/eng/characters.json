@@ -1,0 +1,18 @@
+{
+  "ZHAO_CHARACTER.title": "Zhao",
+  "ZHAO_CHARACTER.titleObject": "Zhao",
+  "ZHAO_CHARACTER.description": "A girl with four forms. Weaves her battle song with the Miko (Foxfire), Nurse (Healing), Diva (Sections) and Lady (Light).",
+  "ZHAO_CHARACTER.pronounObject": "her",
+  "ZHAO_CHARACTER.possessiveAdjective": "her",
+  "ZHAO_CHARACTER.pronounPossessive": "hers",
+  "ZHAO_CHARACTER.pronounSubject": "she",
+  "ZHAO_CHARACTER.cardsModifierTitle": "__ Cards",
+  "ZHAO_CHARACTER.cardsModifierDescription": "__ cards will now appear in rewards and shops.",
+  "ZHAO_CHARACTER.eventDeathPrevention": "Zhao is still here!",
+  "ZHAO_CHARACTER.unlockText": "Zhao is ready to fight.",
+  "ZHAO_CHARACTER.goldMonologue": "Gold... could it buy new reagents?",
+  "ZHAO_CHARACTER.aromaPrinciple": "Miss Zhao is our light!",
+  "ZHAO_CHARACTER.interludeCardPrompt": "Choose a Form card to play",
+  "ZHAO_CHARACTER.banter.alive.endTurnPing": "Zhao is waiting for you.",
+  "ZHAO_CHARACTER.banter.dead.endTurnPing": "..."
+}

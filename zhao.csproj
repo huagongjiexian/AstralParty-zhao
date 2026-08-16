@@ -1,0 +1,42 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <AssemblyName>zhao</AssemblyName>
+    <RootNamespace>Zhao</RootNamespace>
+    <Version>0.0.15</Version>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GodotSharp">
+      <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\GodotSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Godot 编辑器生成的中间文件不参与 dotnet 构建(pck 导出不需要 .NET 构建) -->
+  <ItemGroup>
+    <Compile Remove=".godot/**" />
+    <EmbeddedResource Remove=".godot/**" />
+    <None Remove=".godot/**" />
+  </ItemGroup>
+
+  <!-- 命令类(DamageCmd/PowerCmd/CardCmd/CardPileCmd/CreatureCmd/PlayerCmd)全部在 Commands 命名空间,全局引入 -->
+  <ItemGroup>
+    <Using Include="MegaCrit.Sts2.Core.Commands" />
+  </ItemGroup>
+
+  <!-- 模组由用户自行安装(zip 打包交付),构建不再自动复制到游戏目录 -->
+</Project>

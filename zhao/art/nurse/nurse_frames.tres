@@ -1,0 +1,975 @@
+[gd_resource type="SpriteFrames" load_steps=236 format=3]
+
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_000.png" id="tex_0"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_001.png" id="tex_1"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_002.png" id="tex_2"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_003.png" id="tex_3"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_004.png" id="tex_4"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_005.png" id="tex_5"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_006.png" id="tex_6"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_007.png" id="tex_7"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_008.png" id="tex_8"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_009.png" id="tex_9"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_010.png" id="tex_10"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_011.png" id="tex_11"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_012.png" id="tex_12"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_013.png" id="tex_13"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_014.png" id="tex_14"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_015.png" id="tex_15"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_016.png" id="tex_16"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_017.png" id="tex_17"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_018.png" id="tex_18"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_019.png" id="tex_19"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_020.png" id="tex_20"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_021.png" id="tex_21"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_022.png" id="tex_22"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_023.png" id="tex_23"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_024.png" id="tex_24"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_025.png" id="tex_25"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_026.png" id="tex_26"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_027.png" id="tex_27"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_028.png" id="tex_28"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Idle/frame_029.png" id="tex_29"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_000.png" id="tex_30"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_001.png" id="tex_31"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_002.png" id="tex_32"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_003.png" id="tex_33"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_004.png" id="tex_34"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_005.png" id="tex_35"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_006.png" id="tex_36"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_007.png" id="tex_37"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_008.png" id="tex_38"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_009.png" id="tex_39"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_010.png" id="tex_40"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_011.png" id="tex_41"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_012.png" id="tex_42"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_013.png" id="tex_43"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_014.png" id="tex_44"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_015.png" id="tex_45"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_016.png" id="tex_46"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_017.png" id="tex_47"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_018.png" id="tex_48"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_019.png" id="tex_49"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_020.png" id="tex_50"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_021.png" id="tex_51"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_022.png" id="tex_52"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_023.png" id="tex_53"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_024.png" id="tex_54"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_025.png" id="tex_55"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_026.png" id="tex_56"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_027.png" id="tex_57"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_028.png" id="tex_58"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_029.png" id="tex_59"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_030.png" id="tex_60"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_031.png" id="tex_61"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_032.png" id="tex_62"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_033.png" id="tex_63"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_034.png" id="tex_64"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_035.png" id="tex_65"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_036.png" id="tex_66"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_037.png" id="tex_67"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_038.png" id="tex_68"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_039.png" id="tex_69"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_040.png" id="tex_70"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_041.png" id="tex_71"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_042.png" id="tex_72"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_043.png" id="tex_73"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_044.png" id="tex_74"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_045.png" id="tex_75"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_046.png" id="tex_76"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_047.png" id="tex_77"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_048.png" id="tex_78"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_049.png" id="tex_79"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_050.png" id="tex_80"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_051.png" id="tex_81"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_052.png" id="tex_82"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_053.png" id="tex_83"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_054.png" id="tex_84"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_055.png" id="tex_85"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_056.png" id="tex_86"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_057.png" id="tex_87"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_058.png" id="tex_88"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Attack/frame_059.png" id="tex_89"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_000.png" id="tex_90"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_001.png" id="tex_91"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_002.png" id="tex_92"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_003.png" id="tex_93"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_004.png" id="tex_94"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_005.png" id="tex_95"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_006.png" id="tex_96"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_007.png" id="tex_97"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_008.png" id="tex_98"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_009.png" id="tex_99"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_010.png" id="tex_100"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_011.png" id="tex_101"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_012.png" id="tex_102"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_013.png" id="tex_103"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_014.png" id="tex_104"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_015.png" id="tex_105"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_016.png" id="tex_106"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_017.png" id="tex_107"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_018.png" id="tex_108"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_019.png" id="tex_109"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_020.png" id="tex_110"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_021.png" id="tex_111"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_022.png" id="tex_112"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_023.png" id="tex_113"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_024.png" id="tex_114"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_025.png" id="tex_115"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_026.png" id="tex_116"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_027.png" id="tex_117"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_028.png" id="tex_118"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_029.png" id="tex_119"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_030.png" id="tex_120"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_031.png" id="tex_121"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_032.png" id="tex_122"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_033.png" id="tex_123"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_034.png" id="tex_124"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_035.png" id="tex_125"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_036.png" id="tex_126"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_037.png" id="tex_127"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_038.png" id="tex_128"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_039.png" id="tex_129"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_040.png" id="tex_130"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_041.png" id="tex_131"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_042.png" id="tex_132"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_043.png" id="tex_133"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_044.png" id="tex_134"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_045.png" id="tex_135"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_046.png" id="tex_136"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_047.png" id="tex_137"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_048.png" id="tex_138"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_049.png" id="tex_139"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_050.png" id="tex_140"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_051.png" id="tex_141"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_052.png" id="tex_142"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_053.png" id="tex_143"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_054.png" id="tex_144"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_055.png" id="tex_145"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_056.png" id="tex_146"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_057.png" id="tex_147"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_058.png" id="tex_148"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_059.png" id="tex_149"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_060.png" id="tex_150"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_061.png" id="tex_151"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_062.png" id="tex_152"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_063.png" id="tex_153"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_064.png" id="tex_154"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_065.png" id="tex_155"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_066.png" id="tex_156"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_067.png" id="tex_157"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_068.png" id="tex_158"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_069.png" id="tex_159"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_070.png" id="tex_160"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_071.png" id="tex_161"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_072.png" id="tex_162"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Cast/frame_073.png" id="tex_163"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_000.png" id="tex_164"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_001.png" id="tex_165"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_002.png" id="tex_166"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_003.png" id="tex_167"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_004.png" id="tex_168"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_005.png" id="tex_169"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_006.png" id="tex_170"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_007.png" id="tex_171"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_008.png" id="tex_172"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_009.png" id="tex_173"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_010.png" id="tex_174"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_011.png" id="tex_175"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_012.png" id="tex_176"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_013.png" id="tex_177"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_014.png" id="tex_178"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_015.png" id="tex_179"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_016.png" id="tex_180"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_017.png" id="tex_181"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_018.png" id="tex_182"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_019.png" id="tex_183"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Hit/frame_020.png" id="tex_184"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_000.png" id="tex_185"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_001.png" id="tex_186"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_002.png" id="tex_187"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_003.png" id="tex_188"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_004.png" id="tex_189"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_005.png" id="tex_190"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_006.png" id="tex_191"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_007.png" id="tex_192"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_008.png" id="tex_193"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_009.png" id="tex_194"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_010.png" id="tex_195"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_011.png" id="tex_196"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_012.png" id="tex_197"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_013.png" id="tex_198"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_014.png" id="tex_199"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_015.png" id="tex_200"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_016.png" id="tex_201"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_017.png" id="tex_202"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_018.png" id="tex_203"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_019.png" id="tex_204"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_020.png" id="tex_205"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_021.png" id="tex_206"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_022.png" id="tex_207"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_023.png" id="tex_208"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_024.png" id="tex_209"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_025.png" id="tex_210"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_026.png" id="tex_211"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_027.png" id="tex_212"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_028.png" id="tex_213"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_029.png" id="tex_214"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_030.png" id="tex_215"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_031.png" id="tex_216"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_032.png" id="tex_217"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_033.png" id="tex_218"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_034.png" id="tex_219"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_035.png" id="tex_220"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_036.png" id="tex_221"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_037.png" id="tex_222"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_038.png" id="tex_223"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_039.png" id="tex_224"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_040.png" id="tex_225"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_041.png" id="tex_226"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_042.png" id="tex_227"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_043.png" id="tex_228"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_044.png" id="tex_229"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_045.png" id="tex_230"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_046.png" id="tex_231"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_047.png" id="tex_232"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_048.png" id="tex_233"]
+[ext_resource type="Texture2D" path="res://zhao/art/nurse/Dead/frame_049.png" id="tex_234"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.0333,
+"texture": ExtResource("tex_0")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_2")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_3")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_4")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_5")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_6")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_7")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_8")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_9")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_10")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_11")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_12")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_13")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_14")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_15")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_16")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_17")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_18")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_19")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_20")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_21")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_22")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_23")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_24")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_25")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_26")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_27")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_28")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_29")
+}
+],
+"loop": true,
+"name": &"Idle",
+"speed": 30
+}, {
+"frames": [{
+"duration": 0.0333,
+"texture": ExtResource("tex_30")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_31")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_32")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_33")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_34")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_35")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_36")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_37")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_38")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_39")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_40")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_41")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_42")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_43")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_44")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_45")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_46")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_47")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_48")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_49")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_50")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_51")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_52")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_53")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_54")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_55")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_56")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_57")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_58")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_59")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_60")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_61")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_62")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_63")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_64")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_65")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_66")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_67")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_68")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_69")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_70")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_71")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_72")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_73")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_74")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_75")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_76")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_77")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_78")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_79")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_80")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_81")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_82")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_83")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_84")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_85")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_86")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_87")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_88")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_89")
+}
+],
+"loop": false,
+"name": &"Attack",
+"speed": 30
+}, {
+"frames": [{
+"duration": 0.0333,
+"texture": ExtResource("tex_90")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_91")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_92")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_93")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_94")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_95")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_96")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_97")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_98")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_99")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_100")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_101")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_102")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_103")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_104")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_105")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_106")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_107")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_108")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_109")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_110")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_111")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_112")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_113")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_114")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_115")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_116")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_117")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_118")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_119")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_120")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_121")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_122")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_123")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_124")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_125")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_126")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_127")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_128")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_129")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_130")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_131")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_132")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_133")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_134")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_135")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_136")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_137")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_138")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_139")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_140")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_141")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_142")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_143")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_144")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_145")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_146")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_147")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_148")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_149")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_150")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_151")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_152")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_153")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_154")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_155")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_156")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_157")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_158")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_159")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_160")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_161")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_162")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_163")
+}
+],
+"loop": true,
+"name": &"Cast",
+"speed": 30
+}, {
+"frames": [{
+"duration": 0.0333,
+"texture": ExtResource("tex_164")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_165")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_166")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_167")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_168")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_169")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_170")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_171")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_172")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_173")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_174")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_175")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_176")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_177")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_178")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_179")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_180")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_181")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_182")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_183")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_184")
+}
+],
+"loop": true,
+"name": &"Hit",
+"speed": 30
+}, {
+"frames": [{
+"duration": 0.0333,
+"texture": ExtResource("tex_185")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_186")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_187")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_188")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_189")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_190")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_191")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_192")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_193")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_194")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_195")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_196")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_197")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_198")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_199")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_200")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_201")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_202")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_203")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_204")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_205")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_206")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_207")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_208")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_209")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_210")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_211")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_212")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_213")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_214")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_215")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_216")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_217")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_218")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_219")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_220")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_221")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_222")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_223")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_224")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_225")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_226")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_227")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_228")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_229")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_230")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_231")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_232")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_233")
+}, {
+"duration": 0.0333,
+"texture": ExtResource("tex_234")
+}
+],
+"loop": false,
+"name": &"Dead",
+"speed": 30
+}]

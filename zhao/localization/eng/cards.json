@@ -1,0 +1,31 @@
+{
+  "KITSUNE_FIRE_STRIKE.title": "Foxfire Strike",
+  "KITSUNE_FIRE_STRIKE.description": "Deal [blue]{Damage}[/blue] damage.\nGain [blue]{Foxfire}[/blue] [gold]Foxfire[/gold].",
+
+  "LIGHT_CARD.title": "Miss Zhao is Our Light!",
+  "LIGHT_CARD.description": "Enter [gold]Lady Form[/gold].\nGain [blue]{Light}[/blue] [gold]Light[/gold].",
+
+  "SECTION_INTRO.title": "Section - Intro",
+  "SECTION_INTRO.description": "Unplayable in Diva Form.\nEnter [gold]Diva Form[/gold].\nGain [gold]Section[/gold] - Intro.\nDraw 1 card.\nThis card transforms into [gold]Main[/gold].",
+
+  "EMERGENCY_TREATMENT.title": "Emergency Treatment",
+  "EMERGENCY_TREATMENT.description": "Unplayable in Nurse Form.\nEnter [gold]Nurse Form[/gold].\nGain 1 [gold]Healing[/gold].\nHeal 5 HP.",
+
+  "SECTION_MAIN.title": "Section - Main",
+  "SECTION_MAIN.description": "Intro: spend 1 Foxfire, Chase 1 time (6 damage), heal 6 HP, gain 1 Energy.\nMiko: spend 1 Foxfire, Chase 6 damage, gain 3 Strength.\nLady: spend 2 Light, gain 1 Foxfire, gain 1 Energy.\nNurse: whenever you play a Skill, gain 1 Healing.\nThis card transforms into [gold]Chorus[/gold].",
+
+  "SECTION_CHORUS.title": "Section - Chorus",
+  "SECTION_CHORUS.description": "Enter [gold]Chorus[/gold].\nGain [gold]Liberation[/gold].\nRemoved from this combat.",
+
+  "OUTRO_CARD.title": "Outro",
+  "OUTRO_CARD.description": "Can only be played during the Interlude.\nAdvance the Interlude to the [gold]Outro[/gold].",
+
+  "LIGHT_YO.title": "O Light!",
+  "LIGHT_YO.description": "Can only be played in Lady Form.\nSpend all [gold]Light[/gold]; deal (Light spent x 2) damage.",
+
+  "CHASE_CHASE.title": "Chase Chase",
+  "CHASE_CHASE.description": "[gold]Foxfire[/gold]{Foxfire}.\nChase [blue]{Hits}[/blue] times, [blue]{ChaseDamage}[/blue] damage each.\nMiko Form: additional Chases.",
+
+  "FAST_FORWARD.title": "Fast Forward",
+  "FAST_FORWARD.description": "Gain 2 Vulnerable and 2 Weak.\nIf you have a Section: advance it to the next stage.\nIf you don't: gain a [gold]Section[/gold]."
+}

@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- 用户决定:Godot 版本由我选择 → 4.5.1(与游戏本体一致),使用 MegaDot -->
+    <GodotPath>D:/deepseek/04-工具链/megadot/MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
+    <Sts2Path>D:/SteamLibrary/steamapps/common/Slay the Spire 2</Sts2Path>
+  </PropertyGroup>
+</Project>

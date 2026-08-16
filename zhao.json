@@ -1,0 +1,12 @@
+{
+  "id": "zhao",
+  "name": "我花几亿tokens做的小狐狸",
+  "author": "喵小照",
+  "description": "四形态角色「照」:巫女(狐火)、小护士(治愈)、歌姬(段落)、淑女(光)。",
+  "version": "0.0.15",
+  "min_game_version": "0.107.1",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [],
+  "affects_gameplay": true
+}

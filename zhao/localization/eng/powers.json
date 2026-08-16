@@ -1,0 +1,22 @@
+{
+  "KITSUNE_FORM_POWER.title": "Miko Form",
+  "KITSUNE_FORM_POWER.description": "Playing a card with base cost 3 grants 1 Foxfire. On leaving: Chase once (spend 1 Foxfire, plus damage equal to remaining Foxfire).",
+  "NURSE_FORM_POWER.title": "Nurse Form",
+  "NURSE_FORM_POWER.description": "At turn start, heal HP equal to Healing. At turn end, Healing is halved. On leaving: heal HP equal to Healing.",
+  "DIVA_FORM_POWER.title": "Diva Form",
+  "DIVA_FORM_POWER.description": "Advance the battle through Sections (Intro - Main - Chorus - Interlude - Outro).",
+  "LADY_FORM_POWER.title": "Lady Form",
+  "LADY_FORM_POWER.description": "The power of Light. On leaving: gain 2 Energy.",
+  "HEALING_POWER.title": "Healing",
+  "HEALING_POWER.description": "At turn start, heal HP equal to the stack. At turn end, the stack is halved.",
+  "LIGHT_POWER.title": "Light",
+  "LIGHT_POWER.description": "Miss Zhao is our light! The Lady Form resource.",
+  "SECTION_POWER.title": "Section",
+  "SECTION_POWER.description": "Intro - Main - Chorus - Interlude - Outro.",
+  "LIBERATION_POWER.title": "Liberation",
+  "LIBERATION_POWER.description": "Temporarily upgrade all cards (base - +; + - ++). Disappears when the Chorus ends.",
+  "MAIN_MELODY_POWER.title": "Main Melody",
+  "MAIN_MELODY_POWER.description": "Until your next turn: +1 damage dealt, -1 damage taken.",
+  "NURSE_MAIN_HEALING_POWER.title": "Main's Care",
+  "NURSE_MAIN_HEALING_POWER.description": "Whenever you play a Skill, gain 1 Healing."
+}

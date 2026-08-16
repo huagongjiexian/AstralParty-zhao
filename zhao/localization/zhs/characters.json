@@ -1,0 +1,18 @@
+{
+  "ZHAO_CHARACTER.title": "照",
+  "ZHAO_CHARACTER.titleObject": "照",
+  "ZHAO_CHARACTER.description": "拥有四种形态的少女。以巫女(狐火)、小护士(治愈)、歌姬(段落)、淑女(光)编织属于自己的战斗旋律。",
+  "ZHAO_CHARACTER.pronounObject": "她",
+  "ZHAO_CHARACTER.possessiveAdjective": "她的",
+  "ZHAO_CHARACTER.pronounPossessive": "她的",
+  "ZHAO_CHARACTER.pronounSubject": "她",
+  "ZHAO_CHARACTER.cardsModifierTitle": "__ 卡牌",
+  "ZHAO_CHARACTER.cardsModifierDescription": "__ 卡牌现在会出现在奖励与商店中。",
+  "ZHAO_CHARACTER.eventDeathPrevention": "照还在这里!",
+  "ZHAO_CHARACTER.unlockText": "照已经可以出战。",
+  "ZHAO_CHARACTER.goldMonologue": "金币……能买到新的试剂吗?",
+  "ZHAO_CHARACTER.aromaPrinciple": "照小姐就是我们的光!",
+  "ZHAO_CHARACTER.interludeCardPrompt": "选择1张要打出的形态卡",
+  "ZHAO_CHARACTER.banter.alive.endTurnPing": "照在等你哦。",
+  "ZHAO_CHARACTER.banter.dead.endTurnPing": "……"
+}

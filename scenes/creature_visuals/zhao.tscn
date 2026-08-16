@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_ncv"]
+[ext_resource type="SpriteFrames" path="res://zhao/art/kitsune/kitsune_frames.tres" id="2_kitsune"]
+
+[node name="Zhao" type="Node2D"]
+script = ExtResource("1_ncv")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_kitsune")
+animation = &"Idle"
+autoplay = "Idle"
+unique_name_in_owner = true
+# 用户提供的巫女待机动画摆放参数(镜像其待机.tscn):居中 + 偏移 + 最近邻过滤
+centered = true
+position = Vector2(-26.4, -148.8)
+texture_filter = 1
+flip_h = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -121.0
+offset_top = -278.0
+offset_right = 121.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -168)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(30, -310)

@@ -1,0 +1,19 @@
+; Godot 工程配置(用于把 Resources/ 导出为 zhao.pck;版本 4.5 与游戏本体一致)
+config_version=5
+
+[application]
+
+config/name="zhao"
+config/version="0.0.15"
+config/features=PackedStringArray("4.5")
+config/icon="res://zhao/mod_image.png"
+
+[dotnet]
+
+project/assembly_name="zhao"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.09, 0.12, 0.11, 1)

@@ -1,0 +1,22 @@
+{
+  "KITSUNE_FORM_POWER.title": "巫女形态",
+  "KITSUNE_FORM_POWER.description": "使用原始费用为3费的卡牌时，获得1层狐火。离开时：进行1次追击（消耗1层狐火，额外造成剩余狐火数的伤害）。",
+  "NURSE_FORM_POWER.title": "小护士形态",
+  "NURSE_FORM_POWER.description": "回合开始回复治愈层数的生命；回合结束治愈层数减半。离开时：回复治愈层数的生命。",
+  "DIVA_FORM_POWER.title": "歌姬形态",
+  "DIVA_FORM_POWER.description": "以段落（前奏→主歌→副歌→间奏→尾声）推进战斗。",
+  "LADY_FORM_POWER.title": "淑女形态",
+  "LADY_FORM_POWER.description": "光的力量。离开时：回复2点能量。",
+  "HEALING_POWER.title": "治愈",
+  "HEALING_POWER.description": "回合开始回复等同于层数的生命。回合结束层数减半。",
+  "LIGHT_POWER.title": "光",
+  "LIGHT_POWER.description": "照小姐就是我们的光！淑女形态的资源。",
+  "SECTION_POWER.title": "段落",
+  "SECTION_POWER.description": "前奏→主歌→副歌→间奏→尾声。",
+  "LIBERATION_POWER.title": "解放",
+  "LIBERATION_POWER.description": "临时强化所有卡牌（基础→+；+→++）。随副歌结束而消失。",
+  "MAIN_MELODY_POWER.title": "主歌的旋律",
+  "MAIN_MELODY_POWER.description": "直到下回合开始前：自身造成的伤害+1，受到的伤害-1。",
+  "NURSE_MAIN_HEALING_POWER.title": "主歌的照护",
+  "NURSE_MAIN_HEALING_POWER.description": "每使用1张技能牌，获得1层治愈。"
+}

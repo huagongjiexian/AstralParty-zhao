@@ -1,0 +1,31 @@
+{
+  "KITSUNE_FIRE_STRIKE.title": "狐火打击",
+  "KITSUNE_FIRE_STRIKE.description": "造成 [blue]{Damage}[/blue] 点伤害。\n获得 [blue]{Foxfire}[/blue] 层 [gold]狐火[/gold]。",
+
+  "LIGHT_CARD.title": "照小姐就是我们的光！",
+  "LIGHT_CARD.description": "进入 [gold]淑女形态[/gold]。\n获得 [blue]{Light}[/blue] 层 [gold]光[/gold]。",
+
+  "SECTION_INTRO.title": "セクション（段落）·イントロ（前奏）",
+  "SECTION_INTRO.description": "歌姬形态时不可使用。\n进入 [gold]歌姬形态[/gold]。\n获得 [gold]段落[/gold]·前奏。\n抽1张牌。\n该卡转化为 [gold]主歌[/gold]。",
+
+  "EMERGENCY_TREATMENT.title": "紧急治疗",
+  "EMERGENCY_TREATMENT.description": "小护士形态时不可使用。\n进入 [gold]小护士形态[/gold]。\n获得1层 [gold]治愈[/gold]。\n回复5点生命。",
+
+  "SECTION_MAIN.title": "セクション（段落）·Aメロ（主歌）",
+  "SECTION_MAIN.description": "前奏时：消耗1层狐火，进行1次追击（6伤害），回复6点生命，回复1点能量。\n巫女时：消耗1层狐火，追击6伤害，获得3点力量。\n淑女时：消耗2层光，获得1层狐火，回复1点能量。\n小护士时：此后每使用1张技能牌获得1层治愈。\n该卡转化为 [gold]副歌[/gold]。",
+
+  "SECTION_CHORUS.title": "セクション（段落）·サビ（副歌）",
+  "SECTION_CHORUS.description": "进入 [gold]副歌[/gold]。\n获得 [gold]解放[/gold]。\n从本场战斗移除。",
+
+  "OUTRO_CARD.title": "尾声",
+  "OUTRO_CARD.description": "仅在间奏期间可以使用。\n使间奏进入 [gold]尾声[/gold]。",
+
+  "LIGHT_YO.title": "光よ！",
+  "LIGHT_YO.description": "仅淑女形态可以使用。\n消耗所有 [gold]光[/gold]，造成（消耗光数量×2）点伤害。",
+
+  "CHASE_CHASE.title": "追击追击",
+  "CHASE_CHASE.description": "[gold]狐火[/gold]{Foxfire}。\n进行 [blue]{Hits}[/blue] 次追击，每次 [blue]{ChaseDamage}[/blue] 伤害。\n巫女形态：额外追击。",
+
+  "FAST_FORWARD.title": "快进",
+  "FAST_FORWARD.description": "自身获得2层易伤、2层虚弱。\n已有段落：使当前段落进入下一阶段。\n无段落：获得 [gold]段落[/gold]。"
+}
