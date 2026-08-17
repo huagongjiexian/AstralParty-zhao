@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using Zhao.Forms;
-using Zhao.Powers;
 
 namespace Zhao.Cards;
 

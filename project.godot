@@ -13,7 +13,7 @@ _custom_features="dotnet"
 [application]
 
 config/name="zhao"
-config/version="0.0.15"
+config/version="0.0.17.9"
 config/features=PackedStringArray("4.5", "C#")
 config/icon="res://zhao/mod_image.png"
 

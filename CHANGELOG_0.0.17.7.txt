@@ -1,0 +1,9 @@
+照 0.0.17.7
+
+1. 真正物理删除旧四形态动画资源：diva / lady / nurse。
+2. 删除旧导出动作资源：nurse_frames.res / diva_frames.res / lady_frames.res。
+3. 根据旧 .import 文件记录的精确哈希，删除对应 898 个旧 .ctex；与当前资源的哈希交集为 0。
+4. 重建 kitsune_frames.tres，移除全部 Cast / Dead / Hit 悬空引用，只保留 Attack / Show / Idle。
+5. 当前速度保持：Show 60 FPS、Idle 20 FPS、Attack 40 FPS。
+6. 不删除当前 198 个有效导入资源；Godot 4.5.1 实测可挂载 PCK，并正常读取三套 SpriteFrames 与纹理。
+7. 版本统一为 0.0.17.7。

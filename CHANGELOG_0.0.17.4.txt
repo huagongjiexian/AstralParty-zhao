@@ -1,0 +1,17 @@
+照 0.0.17.6
+
+本版改动：
+1. 新增巫女战斗入场/第一回合展示动作：90帧，20 FPS，非循环。
+2. 展示动作使用镜像方向：战斗场景 AnimatedSprite2D 保持 flip_h=true。
+3. 展示动作结束后自动切回 Idle。
+4. Idle 调整为 20 FPS（30帧，duration=1.0）。
+5. Attack 调整为 23 FPS（60帧，duration=1.0）。
+6. 角色位置继续保持 Vector2(8.6, -148.8)。
+7. 保留 0.0.17.3 的 LightPower「照小姐就是我的光！」图标链和其它机制。
+8. 版本号统一为 0.0.17.6。
+
+实现说明：
+- 不重编现有 C# DLL 逻辑，只将 DLL 版本元数据升为 0.0.17.6。
+- 入场动作由 res://zhao/art/kitsune/zhao_battle_intro.gd 控制。
+- 战斗场景实例化时播放 Show；animation_finished 后切回 Idle。
+- 发布 PCK 中使用编译后的 zhao_battle_intro.gdc。

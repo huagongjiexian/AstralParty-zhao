@@ -1,0 +1,45 @@
+# 照 0.0.17.3 全代码检查
+
+- 扫描全部 C# 文件：52
+- 扫描全部 C# 行数：7413
+- 本次目标：LightPower / 图标路径 / Buff 正式名称 / 版本一致性。
+- LightPower 正式 Buff 名：照小姐就是我的光！
+- “光”仅作为战斗规则与层数简称。
+- LightPower 小图：res://images/atlases/power_atlas.sprites/light_power.tres（128×128，用户图片）。
+- LightPower 大图：res://images/powers/light_power.png（512×512，用户图片）。
+- 旧 ZhaoPowerIconPatch 不再覆盖 PackedIconPath，Prefix 始终返回 true。
+- 其余 Zhao Power 均已补齐原版标准路径的占位 .tres。
+- Godot 4.5.1 运行时挂载新 PCK 实测：LightPower 小图/大图均可加载，其他 Buff 图标仍为占位图。
+- GDRE 全 PCK 校验：2094 files, 0 errors。
+
+## 相关代码命中
+- Code/Cards/LightCard.cs:35: private TaskAwaiter<LightPower?> _003C_003Eu__2;
+- Code/Cards/LightCard.cs:59: TaskAwaiter<LightPower> val;
+- Code/Cards/LightCard.cs:66: _003C_003Eu__2 = default(TaskAwaiter<LightPower>);
+- Code/Cards/LightCard.cs:87: val = PowerCmd.Apply<LightPower>(choiceContext, _003Ccreature_003E5__2, decimal.op_Implicit(((CardModel)lightCard).DynamicVars["Light"].IntValue), _003Ccreature_003E5__2, (CardModel)lightCard, false).GetAwaiter();
+- Code/Cards/LightCard.cs:92: ((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003COnPlay_003Ed__7>(ref val, ref this);
+- Code/Cards/LightYo.cs:76: _003Clight_003E5__3 = _003Ccreature_003E5__2.GetPowerAmount<LightPower>();
+- Code/Cards/LightYo.cs:81: val2 = PowerCmd.Remove<LightPower>(_003Ccreature_003E5__2).GetAwaiter();
+- Code/Cards/SectionMain.cs:533: powerAmount = _003Ccreature_003E5__2.GetPowerAmount<LightPower>();
+- Code/Cards/SectionMain.cs:537: val4 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)_003Ccreature_003E5__2.GetPower<LightPower>(), decimal.op_Implicit(-num2), _003Ccreature_003E5__2, (CardModel)sectionMain, false).GetAwaiter();
+- Code/Character/ZhaoCharacter.cs:39: protected override string IconPath => SceneHelper.GetScenePath("ui/character_icons/zhao_icon");
+- Code/Character/ZhaoCharacter.cs:41: protected override string CharacterSelectIconPath => "res://zhao/images/char_select/zhao_select_icon.png";
+- Code/Character/ZhaoCharacter.cs:43: protected override string CharacterSelectLockedIconPath => "res://zhao/images/char_select/zhao_select_locked.png";
+- Code/Forms/FormSystem.cs:538: private TaskAwaiter<LightPower?> _003C_003Eu__3;
+- Code/Forms/FormSystem.cs:674: TaskAwaiter<LightPower> val6;
+- Code/Forms/FormSystem.cs:757: _003C_003Eu__3 = default(TaskAwaiter<LightPower>);
+- Code/Forms/FormSystem.cs:983: val6 = PowerCmd.Apply<LightPower>(choiceContext, creature, 1m, creature, (CardModel)null, false).GetAwaiter();
+- Code/Forms/FormSystem.cs:988: ((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003CSwitchForm_003Ed__1>(ref val6, ref this);
+- Code/Forms/FormSystem.cs:1004: powerAmount2 = creature.GetPowerAmount<LightPower>();
+- Code/FoxFire/NFoxFireCounter.cs:34: private const string IconPath = "res://zhao/images/foxfire/foxfire_icon.png";
+- Code/LightPower.cs:7: /// Buff「照小姐就是我的光！」。战斗规则与卡牌文本中简称为“光”。
+- Code/LightPower.cs:9: public class LightPower : PowerModel
+- Code/Patches/ZhaoPowerIconPatch.cs:11: /// 0.0.17.3 起不再覆盖 PowerModel.PackedIconPath。
+- Code/Patches/ZhaoPowerIconPatch.cs:14: /// LightPower 对应 light_power.tres（照小姐就是我的光！专属图标）；
+- Code/Patches/ZhaoPowerIconPatch.cs:18: public static class ZhaoPowerIconPatch
+- Code/Patches/ZhaoPowerIconPatch.cs:22: yield return AccessTools.PropertyGetter(typeof(PowerModel), nameof(PowerModel.PackedIconPath));
+- Code/Patches/ZhaoPowerIconPatch.cs:26: /// 返回 true，完全放行原版 PackedIconPath getter。
+- Code/Powers/SectionPower.cs:378: val = PowerCmd.Remove<LightPower>(((PowerModel)sectionPower).Owner).GetAwaiter();
+- Code/Powers/SectionPower.cs:388: powerAmount = ((PowerModel)sectionPower).Owner.GetPowerAmount<LightPower>();
+- Code/Relics/FoxFireRelic.cs:79: public override string PackedIconPath => "res://zhao/images/packed/relics/fox_fire_relic.png";
+- Code/Relics/FoxFireRelic.cs:83: protected override string BigIconPath => "res://zhao/images/relics/fox_fire_relic.png";

@@ -1,0 +1,15 @@
+照 0.0.17.6
+
+1. 修复 Android 快速重开相关闪退规避：
+   - 完全移除 0.0.17.4/0.0.17.5 新增的 zhao_battle_intro.gd / .gdc。
+   - 入场 Show -> Idle 改为纯 AnimationPlayer，不再使用 GDScript 信号或脚本生命周期。
+2. 动画速度：
+   - Show：90 帧，60 FPS，非循环，约 1.5 秒。
+   - Idle：30 帧，20 FPS，循环，约 1.5 秒/轮。
+   - Attack：60 帧，40 FPS，非循环，约 1.5 秒。
+3. 旧动作资源：
+   - 源码/源资源层删除 diva、lady、nurse 旧动作目录。
+   - 删除 kitsune 的旧 Cast / Dead / Hit 源动作。
+   - 发布 PCK 保留 .godot/imported 的旧导入缓存作为 Android/Godot 资源兼容缓存；这些缓存没有被当前 SpriteFrames 或场景引用。
+   - 0.0.17.5 曾直接删除这些导入缓存，导致 AssetLoadingSession 出现大量 “Handle is not initialized”，因此 0.0.17.6 不再物理删除导入缓存。
+4. 保留 0.0.17.3 的「照小姐就是我的光！」Buff 图标与名称修复。

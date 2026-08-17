@@ -12,8 +12,8 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(8.6, -148.8)
 sprite_frames = ExtResource("2")
-animation = &"Idle"
-autoplay = "Idle"
+animation = &"Show"
+autoplay = "Show"
 flip_h = true
 
 [node name="Bounds" type="Control" parent="."]
@@ -32,3 +32,5 @@ position = Vector2(4, -168)
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(30, -310)
+
+[connection signal="animation_finished" from="Visuals" to="Visuals" method="play" binds=[&"Idle"]]

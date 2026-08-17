@@ -1,0 +1,10 @@
+照 0.0.17.3
+
+1. 修复 LightPower「照小姐就是我的光！」战斗状态栏图标未显示用户图片的问题。
+2. 关闭旧 ZhaoPowerIconPatch 对 PackedIconPath 的覆盖，恢复原版 PowerModel 标准图标路径规则。
+3. LightPower 小图固定使用 images/atlases/power_atlas.sprites/light_power.tres。
+4. LightPower 大图固定使用 images/powers/light_power.png，用于获得 Buff / 闪现等 VFX。
+5. 为其余 Zhao 自定义 Power 补齐标准 .tres，占位图保持不变，避免关闭旧补丁后出现缺图。
+6. Buff 正式名称保持「照小姐就是我的光！」；“光”只作为简称。
+7. 版本统一更新为 0.0.17.3。
+8. 同步保留本次修改后的源码与全代码检查报告。

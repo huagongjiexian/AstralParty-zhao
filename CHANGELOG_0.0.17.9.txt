@@ -1,0 +1,10 @@
+照 0.0.17.9
+
+- 待机 Idle：20 FPS（从 0.0.17.8 的 10 FPS 提升 10）。
+- 攻击 Attack：保持 40 FPS。
+- 进场 Show：50 FPS（相对之前 60 FPS 降低 10）。
+- 恢复 90 帧镜像进场动作。
+- 不恢复 IntroPlayer，也不使用 GDScript。
+- Show 为非循环动画；结束后由 AnimatedSprite2D 场景内自连接 animation_finished -> play("Idle") 自动回到待机。
+- 不使用静态 Godot 节点/Callable 保存入场状态，减少跨战斗残留风险。
+- DLL、project.godot 与 zhao.json 版本统一为 0.0.17.9。

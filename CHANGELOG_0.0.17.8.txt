@@ -1,0 +1,7 @@
+0.0.17.8
+- 移除 IntroPlayer
+- 移除运行时 Show 动画及其 90 帧导入缓存
+- Show 原图仅源码保留
+- Idle 20 -> 10 FPS
+- Attack 保持 40 FPS
+- 同步 DLL AssemblyVersion 与 manifest 为 0.0.17.8

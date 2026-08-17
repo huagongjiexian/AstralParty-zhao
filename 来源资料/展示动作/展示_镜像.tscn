@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="SpriteFrames" path="res://单独动作/展示/展示_SpriteFrames.tres" id="1_frames"]
+
+[node name="展示_镜像" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-26.4, -148.8)
+sprite_frames = ExtResource("1_frames")
+animation = &"展示"
+autoplay = "展示"
+centered = true
+flip_h = true

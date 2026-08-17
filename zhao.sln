@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zhao", "zhao.csproj", "{2D936D6C-A741-7F91-45CB-0DDBBF4138D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zhao", "zhao.csproj", "{4124C38E-B74C-4F31-F77B-7E04BCFC8066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +10,10 @@ Global
 		Release|AnyCPU = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D936D6C-A741-7F91-45CB-0DDBBF4138D0}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
-		{2D936D6C-A741-7F91-45CB-0DDBBF4138D0}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
-		{2D936D6C-A741-7F91-45CB-0DDBBF4138D0}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
-		{2D936D6C-A741-7F91-45CB-0DDBBF4138D0}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{4124C38E-B74C-4F31-F77B-7E04BCFC8066}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{4124C38E-B74C-4F31-F77B-7E04BCFC8066}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{4124C38E-B74C-4F31-F77B-7E04BCFC8066}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{4124C38E-B74C-4F31-F77B-7E04BCFC8066}.Release|AnyCPU.Build.0 = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
