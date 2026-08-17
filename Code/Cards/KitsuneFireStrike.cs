@@ -36,7 +36,7 @@ public sealed class KitsuneFireStrike : ZhaoCardModel
 
 		private TaskAwaiter _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
@@ -78,7 +78,7 @@ public sealed class KitsuneFireStrike : ZhaoCardModel
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<AttackCommand>, _003COnPlay_003Ed__5>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<AttackCommand>, _003COnPlay_003Ed__5>(ref val2, ref this);
 						return;
 					}
 					goto IL_00be;
@@ -100,15 +100,15 @@ public sealed class KitsuneFireStrike : ZhaoCardModel
 						break;
 					}
 					IL_0134:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					if (((CardModel)kitsuneFireStrike).CurrentUpgradeLevel >= 2)
 					{
 						val = PursuitExecutor.Chase(choiceContext, ((CardModel)kitsuneFireStrike).Owner, 1, 6m, cardPlay.Target).GetAwaiter();
-						if (!((TaskAwaiter)(ref val)).IsCompleted)
+						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 2);
 							_003C_003Eu__2 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
 							return;
 						}
 						break;
@@ -117,45 +117,45 @@ public sealed class KitsuneFireStrike : ZhaoCardModel
 					IL_00be:
 					val2.GetResult();
 					val = FoxFireCmd.Gain(((CardModel)kitsuneFireStrike).DynamicVars["Foxfire"].IntValue, ((CardModel)kitsuneFireStrike).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
 						return;
 					}
 					goto IL_0134;
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
 	protected override global::System.Collections.Generic.IEnumerable<DynamicVar> CanonicalVars => (global::System.Collections.Generic.IEnumerable<DynamicVar>)(object)new DynamicVar[2]
 	{
-		(DynamicVar)new DamageVar(6m, (ValueProp)8),
+		(DynamicVar)new DamageVar(6m, ValueProp.Move),
 		(DynamicVar)new IntVar("Foxfire", 1m)
 	};
 
 	public override int MaxUpgradeLevel => 2;
 
 	public KitsuneFireStrike()
-		: base(1, (CardType)1, (CardRarity)1, (TargetType)2)
+		: base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 	{
 	}
 
@@ -170,8 +170,8 @@ public sealed class KitsuneFireStrike : ZhaoCardModel
 		_003COnPlay_003Ed__6.choiceContext = choiceContext;
 		_003COnPlay_003Ed__6.cardPlay = cardPlay;
 		_003COnPlay_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__6._003C_003Et__builder.Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
+		return _003COnPlay_003Ed__6._003C_003Et__builder.Task;
 	}
 
 	protected override void OnUpgrade()

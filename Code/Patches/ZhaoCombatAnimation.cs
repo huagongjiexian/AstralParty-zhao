@@ -41,7 +41,7 @@ internal static class ZhaoCombatAnimation
 		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		Enumerator<ulong, ValueTuple<AnimatedSprite2D, Callable>> enumerator = FinishCallbacks.Values.GetEnumerator();
+		global::System.Collections.Generic.Dictionary<ulong, ValueTuple<AnimatedSprite2D, Callable>>.ValueCollection.Enumerator enumerator = FinishCallbacks.Values.GetEnumerator();
 		try
 		{
 			while (enumerator.MoveNext())
@@ -49,9 +49,9 @@ internal static class ZhaoCombatAnimation
 				ValueTuple<AnimatedSprite2D, Callable> current = enumerator.Current;
 				AnimatedSprite2D item = current.Item1;
 				Callable item2 = current.Item2;
-				if (GodotObject.IsInstanceValid((GodotObject)(object)item) && ((GodotObject)item).IsConnected(SignalName.AnimationFinished, item2))
+				if (GodotObject.IsInstanceValid((GodotObject)(object)item) && ((GodotObject)item).IsConnected(AnimatedSprite2D.SignalName.AnimationFinished, item2))
 				{
-					((GodotObject)item).Disconnect(SignalName.AnimationFinished, item2);
+					((GodotObject)item).Disconnect(AnimatedSprite2D.SignalName.AnimationFinished, item2);
 				}
 			}
 		}
@@ -80,7 +80,7 @@ internal static class ZhaoCombatAnimation
 				OnAnimationFinished(sprite);
 			});
 			FinishCallbacks[instanceId] = new ValueTuple<AnimatedSprite2D, Callable>(sprite, val);
-			((GodotObject)sprite).Connect(SignalName.AnimationFinished, val, 0u);
+			((GodotObject)sprite).Connect(AnimatedSprite2D.SignalName.AnimationFinished, val, 0u);
 		}
 	}
 

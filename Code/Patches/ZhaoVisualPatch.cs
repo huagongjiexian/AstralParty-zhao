@@ -23,7 +23,7 @@ public static class ZhaoVisualPatch
 
 		private int _003C_003El__initialThreadId;
 
-		private Enumerator<string, string> _003C_003E7__wrap1;
+		private global::System.Collections.Generic.Dictionary<string, string>.KeyCollection.Enumerator _003C_003E7__wrap1;
 
 		MethodBase global::System.Collections.Generic.IEnumerator<MethodBase>.Current
 		{
@@ -65,7 +65,7 @@ public static class ZhaoVisualPatch
 					_003C_003Em__Finally1();
 				}
 			}
-			_003C_003E7__wrap1 = default(Enumerator<string, string>);
+			_003C_003E7__wrap1 = default(global::System.Collections.Generic.Dictionary<string, string>.KeyCollection.Enumerator);
 			_003C_003E1__state = -2;
 		}
 
@@ -101,7 +101,7 @@ public static class ZhaoVisualPatch
 					}
 				}
 				_003C_003Em__Finally1();
-				_003C_003E7__wrap1 = default(Enumerator<string, string>);
+				_003C_003E7__wrap1 = default(global::System.Collections.Generic.Dictionary<string, string>.KeyCollection.Enumerator);
 				return false;
 			}
 			catch
@@ -172,7 +172,7 @@ public static class ZhaoVisualPatch
 	[IteratorStateMachine(typeof(_003CTargetMethods_003Ed__1))]
 	private static global::System.Collections.Generic.IEnumerable<MethodBase> TargetMethods()
 	{
-		Enumerator<string, string> enumerator = PathOverrides.Keys.GetEnumerator();
+		global::System.Collections.Generic.Dictionary<string, string>.KeyCollection.Enumerator enumerator = PathOverrides.Keys.GetEnumerator();
 		try
 		{
 			while (enumerator.MoveNext())
@@ -198,7 +198,7 @@ public static class ZhaoVisualPatch
 			return true;
 		}
 		string text = default(string);
-		if (PathOverrides.TryGetValue(((MemberInfo)__originalMethod).Name, ref text))
+		if (PathOverrides.TryGetValue(((MemberInfo)__originalMethod).Name, out text))
 		{
 			__result = text;
 			return false;

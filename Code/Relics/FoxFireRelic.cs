@@ -23,7 +23,7 @@ public sealed class FoxFireRelic : RelicModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0053: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0058: Unknown result type (might be due to invalid IL or missing references)
@@ -41,11 +41,11 @@ public sealed class FoxFireRelic : RelicModel
 				{
 					((RelicModel)foxFireRelic).Flash();
 					val = FoxFireCmd.Gain(2, ((RelicModel)foxFireRelic).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CBeforeCombatStart_003Ed__8>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CBeforeCombatStart_003Ed__8>(ref val, ref this);
 						return;
 					}
 				}
@@ -55,22 +55,22 @@ public sealed class FoxFireRelic : RelicModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -91,7 +91,7 @@ public sealed class FoxFireRelic : RelicModel
 		_003CBeforeCombatStart_003Ed__9._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
 		_003CBeforeCombatStart_003Ed__9._003C_003E4__this = this;
 		_003CBeforeCombatStart_003Ed__9._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CBeforeCombatStart_003Ed__9._003C_003Et__builder)).Start<_003CBeforeCombatStart_003Ed__8>(ref _003CBeforeCombatStart_003Ed__9);
-		return ((AsyncTaskMethodBuilder)(ref _003CBeforeCombatStart_003Ed__9._003C_003Et__builder)).Task;
+		_003CBeforeCombatStart_003Ed__9._003C_003Et__builder.Start<_003CBeforeCombatStart_003Ed__8>(ref _003CBeforeCombatStart_003Ed__9);
+		return _003CBeforeCombatStart_003Ed__9._003C_003Et__builder.Task;
 	}
 }

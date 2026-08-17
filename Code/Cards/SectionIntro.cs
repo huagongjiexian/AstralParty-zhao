@@ -33,7 +33,7 @@ public sealed class SectionIntro : ZhaoCardModel
 
 		private TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>> _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0076: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007b: Unknown result type (might be due to invalid IL or missing references)
@@ -67,11 +67,11 @@ public sealed class SectionIntro : ZhaoCardModel
 				default:
 					_003Ccreature_003E5__2 = ((CardModel)sectionIntro).Owner.Creature;
 					val2 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Diva).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
 						return;
 					}
 					goto IL_0091;
@@ -93,24 +93,24 @@ public sealed class SectionIntro : ZhaoCardModel
 						break;
 					}
 					IL_00f8:
-					((TaskAwaiter)(ref val2)).GetResult();
+					val2.GetResult();
 					val = CardPileCmd.Draw(choiceContext, 1m, ((CardModel)sectionIntro).Owner, false).GetAwaiter();
 					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 2);
 						_003C_003Eu__2 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>, _003COnPlay_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>, _003COnPlay_003Ed__5>(ref val, ref this);
 						return;
 					}
 					break;
 					IL_0091:
-					((TaskAwaiter)(ref val2)).GetResult();
+					val2.GetResult();
 					val2 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Intro).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val2, ref this);
 						return;
 					}
 					goto IL_00f8;
@@ -121,18 +121,18 @@ public sealed class SectionIntro : ZhaoCardModel
 			{
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -151,7 +151,7 @@ public sealed class SectionIntro : ZhaoCardModel
 	}
 
 	public SectionIntro()
-		: base(1, (CardType)2, (CardRarity)1, (TargetType)1)
+		: base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 	{
 	}
 
@@ -165,8 +165,8 @@ public sealed class SectionIntro : ZhaoCardModel
 		_003COnPlay_003Ed__6._003C_003E4__this = this;
 		_003COnPlay_003Ed__6.choiceContext = choiceContext;
 		_003COnPlay_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__6._003C_003Et__builder.Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
+		return _003COnPlay_003Ed__6._003C_003Et__builder.Task;
 	}
 
 	protected override global::System.Threading.Tasks.Task? OnTransformAfterPlay()

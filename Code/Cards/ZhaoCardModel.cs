@@ -25,7 +25,7 @@ public abstract class ZhaoCardModel : CardModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_004c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0051: Unknown result type (might be due to invalid IL or missing references)
@@ -50,34 +50,34 @@ public abstract class ZhaoCardModel : CardModel
 				if (task != null)
 				{
 					val = task.GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CRunTransformAfterPlay_003Ed__13>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CRunTransformAfterPlay_003Ed__13>(ref val, ref this);
 						return;
 					}
 					goto IL_0067;
 				}
 				goto end_IL_000e;
 				IL_0067:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -93,7 +93,7 @@ public abstract class ZhaoCardModel : CardModel
 			{
 				return false;
 			}
-			return ((CardModel)this).IsPlayable;
+			return base.IsPlayable;
 		}
 	}
 
@@ -139,7 +139,7 @@ public abstract class ZhaoCardModel : CardModel
 		_003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
 		_003CRunTransformAfterPlay_003Ed__14._003C_003E4__this = this;
 		_003CRunTransformAfterPlay_003Ed__14._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder)).Start<_003CRunTransformAfterPlay_003Ed__13>(ref _003CRunTransformAfterPlay_003Ed__14);
-		return ((AsyncTaskMethodBuilder)(ref _003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder)).Task;
+		_003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder.Start<_003CRunTransformAfterPlay_003Ed__13>(ref _003CRunTransformAfterPlay_003Ed__14);
+		return _003CRunTransformAfterPlay_003Ed__14._003C_003Et__builder.Task;
 	}
 }

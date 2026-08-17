@@ -28,7 +28,7 @@ public static class ZhaoCombatUiPatch
 			if (val != null && !Enumerable.Any<NFoxFireCounter>(Enumerable.OfType<NFoxFireCounter>((global::System.Collections.IEnumerable)((Node)val).GetChildren(false))))
 			{
 				NFoxFireCounter nFoxFireCounter = NFoxFireCounter.Create(me);
-				((Node)val).AddChild((Node)nFoxFireCounter, false, (InternalMode)0);
+				((Node)val).AddChild((Node)nFoxFireCounter, false, InternalMode.Disabled);
 			}
 		}
 	}

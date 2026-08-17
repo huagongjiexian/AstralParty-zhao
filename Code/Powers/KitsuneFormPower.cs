@@ -28,7 +28,7 @@ public class KitsuneFormPower : ZhaoFormPower
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
@@ -66,17 +66,18 @@ public class KitsuneFormPower : ZhaoFormPower
 					SectionPower section = FormSystem.GetSection(((PowerModel)kitsuneFormPower).Owner);
 					bool flag = section != null && section.Stage == SectionStage.Intro;
 					int withModifiers = card.EnergyCost.GetWithModifiers((CostModifiers)(-1));
-					if (canonical == 3 || (flag && withModifiers == 2))
+					// 修复:仅"原始3费牌"(前奏打折后当前费用为2)触发狐火;原生2费牌不触发
+					if (canonical == 3 && (withModifiers == 3 || (flag && withModifiers == 2)))
 					{
 						Player val2 = FormSystem.PlayerFor(((PowerModel)kitsuneFormPower).Owner);
 						if (val2 != null)
 						{
 							val = FoxFireCmd.Gain(1, val2).GetAwaiter();
-							if (!((TaskAwaiter)(ref val)).IsCompleted)
+							if (!val.IsCompleted)
 							{
 								num = (_003C_003E1__state = 0);
 								_003C_003Eu__1 = val;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterCardPlayed_003Ed__0>(ref val, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterCardPlayed_003Ed__0>(ref val, ref this);
 								return;
 							}
 							goto IL_010a;
@@ -85,23 +86,23 @@ public class KitsuneFormPower : ZhaoFormPower
 				}
 				goto end_IL_000e;
 				IL_010a:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -115,7 +116,7 @@ public class KitsuneFormPower : ZhaoFormPower
 		_003CAfterCardPlayed_003Ed__1._003C_003E4__this = this;
 		_003CAfterCardPlayed_003Ed__1.cardPlay = cardPlay;
 		_003CAfterCardPlayed_003Ed__1._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterCardPlayed_003Ed__1._003C_003Et__builder)).Start<_003CAfterCardPlayed_003Ed__0>(ref _003CAfterCardPlayed_003Ed__1);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterCardPlayed_003Ed__1._003C_003Et__builder)).Task;
+		_003CAfterCardPlayed_003Ed__1._003C_003Et__builder.Start<_003CAfterCardPlayed_003Ed__0>(ref _003CAfterCardPlayed_003Ed__1);
+		return _003CAfterCardPlayed_003Ed__1._003C_003Et__builder.Task;
 	}
 }

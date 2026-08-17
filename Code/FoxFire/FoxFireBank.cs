@@ -9,7 +9,7 @@ public static class FoxFireBank
 
 	public static FoxFireResource For(Player player)
 	{
-		return _states.GetValue(player, (CreateValueCallback<Player, FoxFireResource>)((Player _) => new FoxFireResource()));
+		return _states.GetValue(player, (global::System.Runtime.CompilerServices.ConditionalWeakTable<Player, FoxFireResource>.CreateValueCallback)((Player _) => new FoxFireResource()));
 	}
 
 	public static int Get(Player player)

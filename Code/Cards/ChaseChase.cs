@@ -32,7 +32,7 @@ public sealed class ChaseChase : ZhaoCardModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
@@ -48,7 +48,7 @@ public sealed class ChaseChase : ZhaoCardModel
 				TaskAwaiter val;
 				if (num != 0)
 				{
-					ArgumentNullException.ThrowIfNull((object)cardPlay.Target, "cardPlay.Target");
+					// 修复:目标为空/死亡时由 PursuitExecutor.Chase 回退到随机存活敌人,不再硬抛异常
 					Creature creature = ((CardModel)chaseChase).Owner.Creature;
 					int num2 = ((CardModel)chaseChase).DynamicVars["Hits"].IntValue;
 					decimal baseValue = ((CardModel)chaseChase).DynamicVars["ChaseDamage"].BaseValue;
@@ -57,11 +57,11 @@ public sealed class ChaseChase : ZhaoCardModel
 						num2 += ((((CardModel)chaseChase).CurrentUpgradeLevel < 2) ? 1 : 2);
 					}
 					val = PursuitExecutor.Chase(choiceContext, ((CardModel)chaseChase).Owner, num2, baseValue, cardPlay.Target).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__7>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__7>(ref val, ref this);
 						return;
 					}
 				}
@@ -71,22 +71,22 @@ public sealed class ChaseChase : ZhaoCardModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -102,7 +102,7 @@ public sealed class ChaseChase : ZhaoCardModel
 	public override int FoxFireCost => ((CardModel)this).DynamicVars["Foxfire"].IntValue;
 
 	public ChaseChase()
-		: base(2, (CardType)1, (CardRarity)2, (TargetType)2)
+		: base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 
@@ -117,14 +117,19 @@ public sealed class ChaseChase : ZhaoCardModel
 		_003COnPlay_003Ed__8.choiceContext = choiceContext;
 		_003COnPlay_003Ed__8.cardPlay = cardPlay;
 		_003COnPlay_003Ed__8._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Start<_003COnPlay_003Ed__7>(ref _003COnPlay_003Ed__8);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__8._003C_003Et__builder.Start<_003COnPlay_003Ed__7>(ref _003COnPlay_003Ed__8);
+		return _003COnPlay_003Ed__8._003C_003Et__builder.Task;
 	}
 
 	protected override void OnUpgrade()
 	{
-		if (((CardModel)this).CurrentUpgradeLevel != 1 && ((CardModel)this).CurrentUpgradeLevel == 2)
+		if (((CardModel)this).CurrentUpgradeLevel == 1)
 		{
+			// 基础→+:效果与基础相同(不得擅自加强),不改任何数值
+		}
+		else if (((CardModel)this).CurrentUpgradeLevel == 2)
+		{
+			// ++:3费,狐火2→1,4次追击×8伤害(巫女形态额外+2次,总计6次)
 			((CardModel)this).EnergyCost.UpgradeBy(1);
 			((CardModel)this).DynamicVars["Foxfire"].UpgradeValueBy(-1m);
 			((CardModel)this).DynamicVars["Hits"].UpgradeValueBy(2m);

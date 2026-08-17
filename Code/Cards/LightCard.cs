@@ -34,7 +34,7 @@ public sealed class LightCard : ZhaoCardModel
 
 		private TaskAwaiter<LightPower?> _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0073: Unknown result type (might be due to invalid IL or missing references)
@@ -69,11 +69,11 @@ public sealed class LightCard : ZhaoCardModel
 					}
 					_003Ccreature_003E5__2 = ((CardModel)lightCard).Owner.Creature;
 					val2 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Lady).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__7>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__7>(ref val2, ref this);
 						return;
 					}
 				}
@@ -83,13 +83,13 @@ public sealed class LightCard : ZhaoCardModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val2)).GetResult();
-				val = PowerCmd.Apply<LightPower>(choiceContext, _003Ccreature_003E5__2, decimal.op_Implicit(((CardModel)lightCard).DynamicVars["Light"].IntValue), _003Ccreature_003E5__2, (CardModel)lightCard, false).GetAwaiter();
+				val2.GetResult();
+				val = PowerCmd.Apply<LightPower>(choiceContext, _003Ccreature_003E5__2, (decimal)(((CardModel)lightCard).DynamicVars["Light"].IntValue), _003Ccreature_003E5__2, (CardModel)lightCard, false).GetAwaiter();
 				if (!val.IsCompleted)
 				{
 					num = (_003C_003E1__state = 1);
 					_003C_003Eu__2 = val;
-					((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003COnPlay_003Ed__7>(ref val, ref this);
+					_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003COnPlay_003Ed__7>(ref val, ref this);
 					return;
 				}
 				goto IL_0113;
@@ -100,18 +100,18 @@ public sealed class LightCard : ZhaoCardModel
 			{
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -132,7 +132,7 @@ public sealed class LightCard : ZhaoCardModel
 	}
 
 	public LightCard()
-		: base(1, (CardType)2, (CardRarity)1, (TargetType)1)
+		: base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 	{
 	}
 
@@ -146,8 +146,8 @@ public sealed class LightCard : ZhaoCardModel
 		_003COnPlay_003Ed__8._003C_003E4__this = this;
 		_003COnPlay_003Ed__8.choiceContext = choiceContext;
 		_003COnPlay_003Ed__8._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Start<_003COnPlay_003Ed__7>(ref _003COnPlay_003Ed__8);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__8._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__8._003C_003Et__builder.Start<_003COnPlay_003Ed__7>(ref _003COnPlay_003Ed__8);
+		return _003COnPlay_003Ed__8._003C_003Et__builder.Task;
 	}
 
 	protected override void OnUpgrade()

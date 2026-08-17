@@ -24,7 +24,7 @@ public static class TransformHelper
 
 		private TaskAwaiter<CardPileAddResult?> _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_004b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0050: Unknown result type (might be due to invalid IL or missing references)
@@ -50,7 +50,7 @@ public static class TransformHelper
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<CardPileAddResult?>, _003CTransformInto_003Ed__0<T>>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<CardPileAddResult?>, _003CTransformInto_003Ed__0<T>>(ref val, ref this);
 						return;
 					}
 				}
@@ -86,17 +86,17 @@ public static class TransformHelper
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -109,7 +109,7 @@ public static class TransformHelper
 		_003CTransformInto_003Ed__1._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
 		_003CTransformInto_003Ed__1.original = original;
 		_003CTransformInto_003Ed__1._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CTransformInto_003Ed__1._003C_003Et__builder)).Start<_003CTransformInto_003Ed__0<T>>(ref _003CTransformInto_003Ed__1);
-		return ((AsyncTaskMethodBuilder)(ref _003CTransformInto_003Ed__1._003C_003Et__builder)).Task;
+		_003CTransformInto_003Ed__1._003C_003Et__builder.Start<_003CTransformInto_003Ed__0<T>>(ref _003CTransformInto_003Ed__1);
+		return _003CTransformInto_003Ed__1._003C_003Et__builder.Task;
 	}
 }

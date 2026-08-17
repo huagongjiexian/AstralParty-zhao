@@ -21,7 +21,7 @@ public static class ZhaoSelectButtonPatch
 		if (__args.Length != 0 && __args[0] is ZhaoCharacter)
 		{
 			ZhaoSelectFrame zhaoSelectFrame = ZhaoSelectFrame.Create();
-			((Node)__instance).AddChild((Node)zhaoSelectFrame, false, (InternalMode)0);
+			((Node)__instance).AddChild((Node)zhaoSelectFrame, false, InternalMode.Disabled);
 			((Node)__instance).MoveChild((Node)zhaoSelectFrame, 0);
 			ConfigureInput(__instance);
 		}
@@ -35,7 +35,7 @@ public static class ZhaoSelectButtonPatch
 		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
 		((Control)button).MouseFilter = (MouseFilterEnum)0;
 		IgnoreChildControls((Node)button);
-		((GodotObject)button).Connect(SignalName.GuiInput, Callable.From<InputEvent>((Action<InputEvent>)delegate(InputEvent inputEvent)
+		((GodotObject)button).Connect(BaseButton.SignalName.GuiInput, Callable.From<InputEvent>((Action<InputEvent>)delegate(InputEvent inputEvent)
 		{
 			SelectOnClick(button, inputEvent);
 		}), 0u);
@@ -54,7 +54,7 @@ public static class ZhaoSelectButtonPatch
 				Control val = (Control)((current is Control) ? current : null);
 				if (val != null)
 				{
-					val.MouseFilter = (MouseFilterEnum)2;
+					val.MouseFilter = MouseFilterEnum.Ignore;
 				}
 				IgnoreChildControls(current);
 			}

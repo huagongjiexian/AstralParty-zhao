@@ -33,7 +33,7 @@ public sealed class SectionChorus : ZhaoCardModel
 
 		private TaskAwaiter<LiberationPower?> _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0073: Unknown result type (might be due to invalid IL or missing references)
@@ -68,11 +68,11 @@ public sealed class SectionChorus : ZhaoCardModel
 					}
 					_003Ccreature_003E5__2 = ((CardModel)sectionChorus).Owner.Creature;
 					val2 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Chorus).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__3>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__3>(ref val2, ref this);
 						return;
 					}
 				}
@@ -82,13 +82,13 @@ public sealed class SectionChorus : ZhaoCardModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val2)).GetResult();
+				val2.GetResult();
 				val = PowerCmd.Apply<LiberationPower>(choiceContext, _003Ccreature_003E5__2, 1m, _003Ccreature_003E5__2, (CardModel)sectionChorus, false).GetAwaiter();
 				if (!val.IsCompleted)
 				{
 					num = (_003C_003E1__state = 1);
 					_003C_003Eu__2 = val;
-					((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LiberationPower>, _003COnPlay_003Ed__3>(ref val, ref this);
+					_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<LiberationPower>, _003COnPlay_003Ed__3>(ref val, ref this);
 					return;
 				}
 				goto IL_00fe;
@@ -99,25 +99,25 @@ public sealed class SectionChorus : ZhaoCardModel
 			{
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
 	public override int MaxUpgradeLevel => 2;
 
 	public SectionChorus()
-		: base(1, (CardType)2, (CardRarity)7, (TargetType)1)
+		: base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
 	{
 	}
 
@@ -131,13 +131,13 @@ public sealed class SectionChorus : ZhaoCardModel
 		_003COnPlay_003Ed__4._003C_003E4__this = this;
 		_003COnPlay_003Ed__4.choiceContext = choiceContext;
 		_003COnPlay_003Ed__4._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Start<_003COnPlay_003Ed__3>(ref _003COnPlay_003Ed__4);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__4._003C_003Et__builder.Start<_003COnPlay_003Ed__3>(ref _003COnPlay_003Ed__4);
+		return _003COnPlay_003Ed__4._003C_003Et__builder.Task;
 	}
 
 	protected override PileType GetResultPileTypeForCardPlay()
 	{
-		return (PileType)0;
+		return PileType.None;
 	}
 
 	protected override void OnUpgrade()

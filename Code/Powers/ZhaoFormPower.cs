@@ -5,9 +5,9 @@ namespace Zhao.Powers;
 
 public abstract class ZhaoFormPower : PowerModel
 {
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)2;
+	public override PowerStackType StackType => PowerStackType.Single;
 
 	public override int DisplayAmount => 0;
 }

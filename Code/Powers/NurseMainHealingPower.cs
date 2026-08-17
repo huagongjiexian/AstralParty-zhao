@@ -30,7 +30,7 @@ public class NurseMainHealingPower : PowerModel
 
 		private TaskAwaiter<HealingPower?> _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
@@ -63,7 +63,7 @@ public class NurseMainHealingPower : PowerModel
 						{
 							num = (_003C_003E1__state = 0);
 							_003C_003Eu__1 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<HealingPower>, _003CAfterCardPlayed_003Ed__6>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<HealingPower>, _003CAfterCardPlayed_003Ed__6>(ref val, ref this);
 							return;
 						}
 						goto IL_00d2;
@@ -77,23 +77,23 @@ public class NurseMainHealingPower : PowerModel
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)2;
+	public override PowerStackType StackType => PowerStackType.Single;
 
 	public override int DisplayAmount => 0;
 
@@ -108,7 +108,7 @@ public class NurseMainHealingPower : PowerModel
 		_003CAfterCardPlayed_003Ed__7.choiceContext = choiceContext;
 		_003CAfterCardPlayed_003Ed__7.cardPlay = cardPlay;
 		_003CAfterCardPlayed_003Ed__7._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterCardPlayed_003Ed__7._003C_003Et__builder)).Start<_003CAfterCardPlayed_003Ed__6>(ref _003CAfterCardPlayed_003Ed__7);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterCardPlayed_003Ed__7._003C_003Et__builder)).Task;
+		_003CAfterCardPlayed_003Ed__7._003C_003Et__builder.Start<_003CAfterCardPlayed_003Ed__6>(ref _003CAfterCardPlayed_003Ed__7);
+		return _003CAfterCardPlayed_003Ed__7._003C_003Et__builder.Task;
 	}
 }

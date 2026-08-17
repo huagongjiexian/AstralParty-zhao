@@ -39,7 +39,7 @@ public static class FormSystem
 
 		private TaskAwaiter _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_012b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0130: Unknown result type (might be due to invalid IL or missing references)
@@ -95,13 +95,13 @@ public static class FormSystem
 						if (val4 != null)
 						{
 							CardSelectorPrefs val5 = default(CardSelectorPrefs);
-							((CardSelectorPrefs)(ref val5))._002Ector(new LocString("characters", "ZHAO_CHARACTER.interludeCardPrompt"), 1);
+							val5 = new CardSelectorPrefs(new LocString("characters", "ZHAO_CHARACTER.interludeCardPrompt"), 1);
 							val = CardSelectCmd.FromCombatPile(choiceContext, val4, val3, val5, (Func<CardModel, bool>)((CardModel c) => _003CEnterInterlude_003Eg__IsFormCard_007C7_2(c) && c.CanPlay())).GetAwaiter();
 							if (!val.IsCompleted)
 							{
 								num = (_003C_003E1__state = 0);
 								_003C_003Eu__1 = val;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>, _003CEnterInterlude_003Ed__7>(ref val, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<CardModel>>, _003CEnterInterlude_003Ed__7>(ref val, ref this);
 								return;
 							}
 							goto IL_0147;
@@ -113,35 +113,35 @@ public static class FormSystem
 				CardModel val6 = Enumerable.FirstOrDefault<CardModel>(val.GetResult());
 				if (val6 != null)
 				{
-					val2 = CardCmd.AutoPlay(choiceContext, val6, (Creature)null, (AutoPlayType)1, false, false).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					val2 = CardCmd.AutoPlay(choiceContext, val6, (Creature)null, AutoPlayType.Default, false, false).GetAwaiter();
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CEnterInterlude_003Ed__7>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CEnterInterlude_003Ed__7>(ref val2, ref this);
 						return;
 					}
 					goto IL_01b8;
 				}
 				goto end_IL_0007;
 				IL_01b8:
-				((TaskAwaiter)(ref val2)).GetResult();
+				val2.GetResult();
 				end_IL_0007:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -163,7 +163,7 @@ public static class FormSystem
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0093: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0098: Unknown result type (might be due to invalid IL or missing references)
@@ -200,11 +200,11 @@ public static class FormSystem
 						if (_003Cfire_003E5__3 > 0)
 						{
 							val = FoxFireCmd.Lose(1, _003Cplayer_003E5__2).GetAwaiter();
-							if (!((TaskAwaiter)(ref val)).IsCompleted)
+							if (!val.IsCompleted)
 							{
 								num = (_003C_003E1__state = 0);
 								_003C_003Eu__1 = val;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
 								return;
 							}
 							goto IL_00ae;
@@ -229,52 +229,52 @@ public static class FormSystem
 						break;
 					}
 					IL_012b:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					if (_003Cfire_003E5__3 > 0)
 					{
-						val = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__2, 1, decimal.op_Implicit(_003Cfire_003E5__3)).GetAwaiter();
-						if (!((TaskAwaiter)(ref val)).IsCompleted)
+						val = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__2, 1, (decimal)(_003Cfire_003E5__3)).GetAwaiter();
+						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 2);
 							_003C_003Eu__1 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
 							return;
 						}
 						break;
 					}
 					goto end_IL_0007;
 					IL_00ae:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					_003Cfire_003E5__3--;
 					val = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__2, 1, 1m).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveKitsuneForm_003Ed__2>(ref val, ref this);
 						return;
 					}
 					goto IL_012b;
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_0007:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
 				_003Cplayer_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Cplayer_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -290,7 +290,7 @@ public static class FormSystem
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 			//IL_005a: Unknown result type (might be due to invalid IL or missing references)
@@ -314,34 +314,34 @@ public static class FormSystem
 				if (val2 != null)
 				{
 					val = PlayerCmd.GainEnergy(2m, val2).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveLadyForm_003Ed__4>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveLadyForm_003Ed__4>(ref val, ref this);
 						return;
 					}
 					goto IL_0070;
 				}
 				goto end_IL_0007;
 				IL_0070:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_0007:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -357,7 +357,7 @@ public static class FormSystem
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0069: Unknown result type (might be due to invalid IL or missing references)
 			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
@@ -380,35 +380,35 @@ public static class FormSystem
 				int powerAmount = creature.GetPowerAmount<HealingPower>();
 				if (powerAmount > 0 && !creature.IsDead)
 				{
-					val = CreatureCmd.Heal(creature, decimal.op_Implicit(powerAmount), true).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					val = CreatureCmd.Heal(creature, (decimal)(powerAmount), true).GetAwaiter();
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveNurseForm_003Ed__3>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CLeaveNurseForm_003Ed__3>(ref val, ref this);
 						return;
 					}
 					goto IL_0084;
 				}
 				goto end_IL_0007;
 				IL_0084:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_0007:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -430,7 +430,7 @@ public static class FormSystem
 
 		private TaskAwaiter<int> _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0077: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007c: Unknown result type (might be due to invalid IL or missing references)
@@ -465,22 +465,22 @@ public static class FormSystem
 					SectionPower power = creature.GetPower<SectionPower>();
 					if (power == null)
 					{
-						val = PowerCmd.Apply<SectionPower>(choiceContext, creature, decimal.op_Implicit((int)stage), creature, (CardModel)null, false).GetAwaiter();
+						val = PowerCmd.Apply<SectionPower>(choiceContext, creature, (decimal)((int)stage), creature, (CardModel)null, false).GetAwaiter();
 						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 0);
 							_003C_003Eu__1 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<SectionPower>, _003CSetStage_003Ed__6>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<SectionPower>, _003CSetStage_003Ed__6>(ref val, ref this);
 							return;
 						}
 						goto IL_0092;
 					}
-					val2 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)power, decimal.op_Implicit((int)stage) - decimal.op_Implicit(((PowerModel)power).Amount), creature, (CardModel)null, false).GetAwaiter();
+					val2 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)power, (decimal)((int)stage) - (decimal)(((PowerModel)power).Amount), creature, (CardModel)null, false).GetAwaiter();
 					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CSetStage_003Ed__6>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CSetStage_003Ed__6>(ref val2, ref this);
 						return;
 					}
 				}
@@ -499,17 +499,17 @@ public static class FormSystem
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -545,7 +545,7 @@ public static class FormSystem
 
 		private TaskAwaiter<LadyFormPower?> _003C_003Eu__7;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0102: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0107: Unknown result type (might be due to invalid IL or missing references)
@@ -706,11 +706,11 @@ public static class FormSystem
 							goto IL_01f9;
 						}
 						val5 = LeaveKitsuneForm(choiceContext, creature).GetAwaiter();
-						if (!((TaskAwaiter)(ref val5)).IsCompleted)
+						if (!val5.IsCompleted)
 						{
 							num = (_003C_003E1__state = 0);
 							_003C_003Eu__1 = val5;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 							return;
 						}
 						goto IL_011e;
@@ -805,7 +805,7 @@ public static class FormSystem
 						break;
 					}
 					IL_0552:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_0559;
 					IL_0809:
 					val2 = PowerCmd.Apply<DivaFormPower>(choiceContext, creature, 1m, creature, (CardModel)null, false).GetAwaiter();
@@ -813,33 +813,33 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 15);
 						_003C_003Eu__6 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<DivaFormPower>, _003CSwitchForm_003Ed__1>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<DivaFormPower>, _003CSwitchForm_003Ed__1>(ref val2, ref this);
 						return;
 					}
 					goto IL_0879;
 					IL_043d:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_0559;
 					IL_03ba:
 					val7.GetResult();
 					powerAmount = creature.GetPowerAmount<HealingPower>();
-					val5 = CreatureCmd.Heal(creature, Math.Max(1m, decimal.op_Implicit(powerAmount)), true).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					val5 = CreatureCmd.Heal(creature, Math.Max(1m, (decimal)(powerAmount)), true).GetAwaiter();
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 6);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_043d;
 					IL_067e:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					val5 = PowerCmd.Remove<LadyFormPower>(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 12);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_06e2;
@@ -849,7 +849,7 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 5);
 						_003C_003Eu__2 = val7;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<HealingPower>, _003CSwitchForm_003Ed__1>(ref val7, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<HealingPower>, _003CSwitchForm_003Ed__1>(ref val7, ref this);
 						return;
 					}
 					goto IL_03ba;
@@ -857,13 +857,13 @@ public static class FormSystem
 					val3.GetResult();
 					goto end_IL_0007;
 					IL_05b6:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					val5 = PowerCmd.Remove<NurseFormPower>(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 10);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_061a;
@@ -873,11 +873,11 @@ public static class FormSystem
 					goto end_IL_0007;
 					IL_018f:
 					val5 = LeaveLadyForm(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 2);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_01eb;
@@ -885,50 +885,50 @@ public static class FormSystem
 					val4.GetResult();
 					goto end_IL_0007;
 					IL_01eb:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_01f9;
 					IL_012a:
 					val5 = LeaveNurseForm(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_0186;
 					IL_033e:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_0559;
 					IL_0186:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_01f9;
 					IL_061a:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					val5 = PowerCmd.Remove<DivaFormPower>(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 11);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_067e;
 					IL_02af:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					num3 = FoxFireCmd.Get(_003Cp3_003E5__3);
-					damagePerHit = Math.Max(1m, decimal.op_Implicit(num3 / 2));
+					damagePerHit = Math.Max(1m, (decimal)(num3 / 2));
 					val5 = PursuitExecutor.Chase(choiceContext, _003Cp3_003E5__3, 1, damagePerHit).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 4);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_033e;
 					IL_011e:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					goto IL_01f9;
 					IL_01f9:
 					if (_003CfromIntro_003E5__2 && targetForm != ZhaoForm.Diva)
@@ -948,11 +948,11 @@ public static class FormSystem
 						if (_003Cp3_003E5__3 != null)
 						{
 							val5 = FoxFireCmd.Gain(1, _003Cp3_003E5__3).GetAwaiter();
-							if (!((TaskAwaiter)(ref val5)).IsCompleted)
+							if (!val5.IsCompleted)
 							{
 								num = (_003C_003E1__state = 3);
 								_003C_003Eu__1 = val5;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 								return;
 							}
 							goto IL_02af;
@@ -961,11 +961,11 @@ public static class FormSystem
 					goto IL_0559;
 					IL_0559:
 					val5 = PowerCmd.Remove<KitsuneFormPower>(creature).GetAwaiter();
-					if (!((TaskAwaiter)(ref val5)).IsCompleted)
+					if (!val5.IsCompleted)
 					{
 						num = (_003C_003E1__state = 9);
 						_003C_003Eu__1 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 						return;
 					}
 					goto IL_05b6;
@@ -975,7 +975,7 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 13);
 						_003C_003Eu__4 = val4;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<KitsuneFormPower>, _003CSwitchForm_003Ed__1>(ref val4, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<KitsuneFormPower>, _003CSwitchForm_003Ed__1>(ref val4, ref this);
 						return;
 					}
 					goto IL_077f;
@@ -985,7 +985,7 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 7);
 						_003C_003Eu__3 = val6;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003CSwitchForm_003Ed__1>(ref val6, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<LightPower>, _003CSwitchForm_003Ed__1>(ref val6, ref this);
 						return;
 					}
 					goto IL_04b8;
@@ -995,7 +995,7 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 14);
 						_003C_003Eu__5 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<NurseFormPower>, _003CSwitchForm_003Ed__1>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<NurseFormPower>, _003CSwitchForm_003Ed__1>(ref val3, ref this);
 						return;
 					}
 					goto IL_07fc;
@@ -1005,19 +1005,19 @@ public static class FormSystem
 					val8 = PlayerFor(creature);
 					if (val8 != null && powerAmount2 > 0)
 					{
-						val5 = PlayerCmd.GainEnergy(decimal.Floor(decimal.op_Implicit(powerAmount2) / 2m), val8).GetAwaiter();
-						if (!((TaskAwaiter)(ref val5)).IsCompleted)
+						val5 = PlayerCmd.GainEnergy(decimal.Floor((decimal)(powerAmount2) / 2m), val8).GetAwaiter();
+						if (!val5.IsCompleted)
 						{
 							num = (_003C_003E1__state = 8);
 							_003C_003Eu__1 = val5;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CSwitchForm_003Ed__1>(ref val5, ref this);
 							return;
 						}
 						goto IL_0552;
 					}
 					goto IL_0559;
 					IL_06e2:
-					((TaskAwaiter)(ref val5)).GetResult();
+					val5.GetResult();
 					switch (targetForm)
 					{
 					case ZhaoForm.Kitsune:
@@ -1036,7 +1036,7 @@ public static class FormSystem
 					{
 						num = (_003C_003E1__state = 16);
 						_003C_003Eu__7 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<LadyFormPower>, _003CSwitchForm_003Ed__1>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<LadyFormPower>, _003CSwitchForm_003Ed__1>(ref val, ref this);
 						return;
 					}
 					break;
@@ -1047,17 +1047,17 @@ public static class FormSystem
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -1093,8 +1093,8 @@ public static class FormSystem
 		_003CSwitchForm_003Ed__2.creature = creature;
 		_003CSwitchForm_003Ed__2.targetForm = targetForm;
 		_003CSwitchForm_003Ed__2._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CSwitchForm_003Ed__2._003C_003Et__builder)).Start<_003CSwitchForm_003Ed__1>(ref _003CSwitchForm_003Ed__2);
-		return ((AsyncTaskMethodBuilder)(ref _003CSwitchForm_003Ed__2._003C_003Et__builder)).Task;
+		_003CSwitchForm_003Ed__2._003C_003Et__builder.Start<_003CSwitchForm_003Ed__1>(ref _003CSwitchForm_003Ed__2);
+		return _003CSwitchForm_003Ed__2._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CLeaveKitsuneForm_003Ed__2))]
@@ -1107,8 +1107,8 @@ public static class FormSystem
 		_003CLeaveKitsuneForm_003Ed__3.choiceContext = choiceContext;
 		_003CLeaveKitsuneForm_003Ed__3.creature = creature;
 		_003CLeaveKitsuneForm_003Ed__3._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CLeaveKitsuneForm_003Ed__3._003C_003Et__builder)).Start<_003CLeaveKitsuneForm_003Ed__2>(ref _003CLeaveKitsuneForm_003Ed__3);
-		return ((AsyncTaskMethodBuilder)(ref _003CLeaveKitsuneForm_003Ed__3._003C_003Et__builder)).Task;
+		_003CLeaveKitsuneForm_003Ed__3._003C_003Et__builder.Start<_003CLeaveKitsuneForm_003Ed__2>(ref _003CLeaveKitsuneForm_003Ed__3);
+		return _003CLeaveKitsuneForm_003Ed__3._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CLeaveNurseForm_003Ed__3))]
@@ -1120,8 +1120,8 @@ public static class FormSystem
 		_003CLeaveNurseForm_003Ed__4._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
 		_003CLeaveNurseForm_003Ed__4.creature = creature;
 		_003CLeaveNurseForm_003Ed__4._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CLeaveNurseForm_003Ed__4._003C_003Et__builder)).Start<_003CLeaveNurseForm_003Ed__3>(ref _003CLeaveNurseForm_003Ed__4);
-		return ((AsyncTaskMethodBuilder)(ref _003CLeaveNurseForm_003Ed__4._003C_003Et__builder)).Task;
+		_003CLeaveNurseForm_003Ed__4._003C_003Et__builder.Start<_003CLeaveNurseForm_003Ed__3>(ref _003CLeaveNurseForm_003Ed__4);
+		return _003CLeaveNurseForm_003Ed__4._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CLeaveLadyForm_003Ed__4))]
@@ -1133,8 +1133,8 @@ public static class FormSystem
 		_003CLeaveLadyForm_003Ed__5._003C_003Et__builder = AsyncTaskMethodBuilder.Create();
 		_003CLeaveLadyForm_003Ed__5.creature = creature;
 		_003CLeaveLadyForm_003Ed__5._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CLeaveLadyForm_003Ed__5._003C_003Et__builder)).Start<_003CLeaveLadyForm_003Ed__4>(ref _003CLeaveLadyForm_003Ed__5);
-		return ((AsyncTaskMethodBuilder)(ref _003CLeaveLadyForm_003Ed__5._003C_003Et__builder)).Task;
+		_003CLeaveLadyForm_003Ed__5._003C_003Et__builder.Start<_003CLeaveLadyForm_003Ed__4>(ref _003CLeaveLadyForm_003Ed__5);
+		return _003CLeaveLadyForm_003Ed__5._003C_003Et__builder.Task;
 	}
 
 	public static SectionPower? GetSection(Creature creature)
@@ -1153,8 +1153,8 @@ public static class FormSystem
 		_003CSetStage_003Ed__7.creature = creature;
 		_003CSetStage_003Ed__7.stage = stage;
 		_003CSetStage_003Ed__7._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CSetStage_003Ed__7._003C_003Et__builder)).Start<_003CSetStage_003Ed__6>(ref _003CSetStage_003Ed__7);
-		return ((AsyncTaskMethodBuilder)(ref _003CSetStage_003Ed__7._003C_003Et__builder)).Task;
+		_003CSetStage_003Ed__7._003C_003Et__builder.Start<_003CSetStage_003Ed__6>(ref _003CSetStage_003Ed__7);
+		return _003CSetStage_003Ed__7._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CEnterInterlude_003Ed__7))]
@@ -1167,8 +1167,8 @@ public static class FormSystem
 		_003CEnterInterlude_003Ed__8.choiceContext = choiceContext;
 		_003CEnterInterlude_003Ed__8.creature = creature;
 		_003CEnterInterlude_003Ed__8._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CEnterInterlude_003Ed__8._003C_003Et__builder)).Start<_003CEnterInterlude_003Ed__7>(ref _003CEnterInterlude_003Ed__8);
-		return ((AsyncTaskMethodBuilder)(ref _003CEnterInterlude_003Ed__8._003C_003Et__builder)).Task;
+		_003CEnterInterlude_003Ed__8._003C_003Et__builder.Start<_003CEnterInterlude_003Ed__7>(ref _003CEnterInterlude_003Ed__8);
+		return _003CEnterInterlude_003Ed__8._003C_003Et__builder.Task;
 	}
 
 	public static Player? PlayerFor(Creature creature)

@@ -36,7 +36,7 @@ public class SectionPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0064: Unknown result type (might be due to invalid IL or missing references)
@@ -57,37 +57,37 @@ public class SectionPower : PowerModel
 					num = (_003C_003E1__state = -1);
 					goto IL_007a;
 				}
-				if ((object)power == sectionPower && sectionPower.Stage == SectionStage.Outro)
+				if ((object)power == sectionPower && sectionPower.Stage == SectionStage.Outro && !sectionPower._settling)
 				{
 					val = sectionPower.OutroSettlement(choiceContext).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterPowerAmountChanged_003Ed__14>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterPowerAmountChanged_003Ed__14>(ref val, ref this);
 						return;
 					}
 					goto IL_007a;
 				}
 				goto end_IL_000e;
 				IL_007a:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class SectionPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
@@ -147,14 +147,14 @@ public class SectionPower : PowerModel
 				switch (num)
 				{
 				default:
-					if ((int)side == 1 && Enumerable.Contains<Creature>(participants, ((PowerModel)sectionPower).Owner) && sectionPower.Stage == SectionStage.Chorus)
+					if (side == CombatSide.Player && Enumerable.Contains<Creature>(participants, ((PowerModel)sectionPower).Owner) && sectionPower.Stage == SectionStage.Chorus)
 					{
-						val2 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)sectionPower, 4m - decimal.op_Implicit(((PowerModel)sectionPower).Amount), ((PowerModel)sectionPower).Owner, (CardModel)null, false).GetAwaiter();
+						val2 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)sectionPower, 4m - (decimal)(((PowerModel)sectionPower).Amount), ((PowerModel)sectionPower).Owner, (CardModel)null, false).GetAwaiter();
 						if (!val2.IsCompleted)
 						{
 							num = (_003C_003E1__state = 0);
 							_003C_003Eu__1 = val2;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CAfterSideTurnEnd_003Ed__13>(ref val2, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CAfterSideTurnEnd_003Ed__13>(ref val2, ref this);
 							return;
 						}
 						goto IL_00cb;
@@ -180,43 +180,43 @@ public class SectionPower : PowerModel
 					IL_00cb:
 					val2.GetResult();
 					val = PowerCmd.Remove<LiberationPower>(((PowerModel)sectionPower).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnEnd_003Ed__13>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnEnd_003Ed__13>(ref val, ref this);
 						return;
 					}
 					goto IL_012c;
 					IL_012c:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					val = FormSystem.EnterInterlude(choiceContext, ((PowerModel)sectionPower).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 2);
 						_003C_003Eu__2 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnEnd_003Ed__13>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnEnd_003Ed__13>(ref val, ref this);
 						return;
 					}
 					break;
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -240,7 +240,7 @@ public class SectionPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
@@ -303,6 +303,8 @@ public class SectionPower : PowerModel
 				switch (num)
 				{
 				default:
+					// 重入保护:结算期间层数再变化也不会二次触发尾声结算
+					sectionPower._settling = true;
 					_003Cplayer_003E5__2 = FormSystem.PlayerFor(((PowerModel)sectionPower).Owner);
 					if (_003Cplayer_003E5__2 != null)
 					{
@@ -313,11 +315,11 @@ public class SectionPower : PowerModel
 							int hitCount = _003Cfoxfire_003E5__4 + (_003Cupgraded_003E5__3 ? (_003Cfoxfire_003E5__4 / 4) : 0);
 							decimal damagePerHit = (_003Cupgraded_003E5__3 ? 7m : 6m);
 							val = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__2, hitCount, damagePerHit).GetAwaiter();
-							if (!((TaskAwaiter)(ref val)).IsCompleted)
+							if (!val.IsCompleted)
 							{
 								num = (_003C_003E1__state = 0);
 								_003C_003Eu__1 = val;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 								return;
 							}
 							goto IL_0116;
@@ -363,24 +365,24 @@ public class SectionPower : PowerModel
 						break;
 					}
 					IL_0116:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					val = FoxFireCmd.Lose(_003Cfoxfire_003E5__4, _003Cplayer_003E5__2).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 						return;
 					}
 					goto IL_017f;
 					IL_020a:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					val = PowerCmd.Remove<LightPower>(((PowerModel)sectionPower).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 3);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 						return;
 					}
 					goto IL_026d;
@@ -388,12 +390,12 @@ public class SectionPower : PowerModel
 					powerAmount = ((PowerModel)sectionPower).Owner.GetPowerAmount<LightPower>();
 					if (powerAmount > 0)
 					{
-						val = PlayerCmd.GainEnergy(decimal.op_Implicit(powerAmount + (_003Cupgraded_003E5__3 ? (powerAmount / 4) : 0)), _003Cplayer_003E5__2).GetAwaiter();
-						if (!((TaskAwaiter)(ref val)).IsCompleted)
+						val = PlayerCmd.GainEnergy((decimal)(powerAmount + (_003Cupgraded_003E5__3 ? (powerAmount / 4) : 0)), _003Cplayer_003E5__2).GetAwaiter();
+						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 2);
 							_003C_003Eu__1 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 							return;
 						}
 						goto IL_020a;
@@ -401,76 +403,76 @@ public class SectionPower : PowerModel
 					goto IL_0274;
 					IL_0367:
 					val = PowerCmd.Remove((PowerModel)sectionPower).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 6);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 						return;
 					}
 					break;
 					IL_017f:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					goto IL_0186;
 					IL_0360:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					goto IL_0367;
 					IL_026d:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					goto IL_0274;
 					IL_0274:
 					powerAmount2 = ((PowerModel)sectionPower).Owner.GetPowerAmount<HealingPower>();
 					if (powerAmount2 > 0)
 					{
 						int num2 = powerAmount2 + (_003Cupgraded_003E5__3 ? (powerAmount2 / 4) : 0);
-						val = CreatureCmd.Heal(((PowerModel)sectionPower).Owner, decimal.op_Implicit(num2), true).GetAwaiter();
-						if (!((TaskAwaiter)(ref val)).IsCompleted)
+						val = CreatureCmd.Heal(((PowerModel)sectionPower).Owner, (decimal)(num2), true).GetAwaiter();
+						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 4);
 							_003C_003Eu__1 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 							return;
 						}
 						goto IL_02fd;
 					}
 					goto IL_0367;
 					IL_02fd:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					val = PowerCmd.Remove<HealingPower>(((PowerModel)sectionPower).Owner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 5);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COutroSettlement_003Ed__15>(ref val, ref this);
 						return;
 					}
 					goto IL_0360;
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
 				_003Cplayer_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Cplayer_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)2;
+	public override PowerStackType StackType => PowerStackType.Single;
 
 	public override int DisplayAmount => 0;
 
@@ -484,6 +486,8 @@ public class SectionPower : PowerModel
 		[CompilerGenerated]
 		set;
 	}
+
+	private bool _settling;
 
 	public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
 	{
@@ -519,8 +523,8 @@ public class SectionPower : PowerModel
 		_003CAfterSideTurnEnd_003Ed__14.side = side;
 		_003CAfterSideTurnEnd_003Ed__14.participants = participants;
 		_003CAfterSideTurnEnd_003Ed__14._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnEnd_003Ed__14._003C_003Et__builder)).Start<_003CAfterSideTurnEnd_003Ed__13>(ref _003CAfterSideTurnEnd_003Ed__14);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnEnd_003Ed__14._003C_003Et__builder)).Task;
+		_003CAfterSideTurnEnd_003Ed__14._003C_003Et__builder.Start<_003CAfterSideTurnEnd_003Ed__13>(ref _003CAfterSideTurnEnd_003Ed__14);
+		return _003CAfterSideTurnEnd_003Ed__14._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CAfterPowerAmountChanged_003Ed__14))]
@@ -534,8 +538,8 @@ public class SectionPower : PowerModel
 		_003CAfterPowerAmountChanged_003Ed__15.choiceContext = choiceContext;
 		_003CAfterPowerAmountChanged_003Ed__15.power = power;
 		_003CAfterPowerAmountChanged_003Ed__15._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterPowerAmountChanged_003Ed__15._003C_003Et__builder)).Start<_003CAfterPowerAmountChanged_003Ed__14>(ref _003CAfterPowerAmountChanged_003Ed__15);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterPowerAmountChanged_003Ed__15._003C_003Et__builder)).Task;
+		_003CAfterPowerAmountChanged_003Ed__15._003C_003Et__builder.Start<_003CAfterPowerAmountChanged_003Ed__14>(ref _003CAfterPowerAmountChanged_003Ed__15);
+		return _003CAfterPowerAmountChanged_003Ed__15._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003COutroSettlement_003Ed__15))]
@@ -548,7 +552,7 @@ public class SectionPower : PowerModel
 		_003COutroSettlement_003Ed__16._003C_003E4__this = this;
 		_003COutroSettlement_003Ed__16.choiceContext = choiceContext;
 		_003COutroSettlement_003Ed__16._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COutroSettlement_003Ed__16._003C_003Et__builder)).Start<_003COutroSettlement_003Ed__15>(ref _003COutroSettlement_003Ed__16);
-		return ((AsyncTaskMethodBuilder)(ref _003COutroSettlement_003Ed__16._003C_003Et__builder)).Task;
+		_003COutroSettlement_003Ed__16._003C_003Et__builder.Start<_003COutroSettlement_003Ed__15>(ref _003COutroSettlement_003Ed__16);
+		return _003COutroSettlement_003Ed__16._003C_003Et__builder.Task;
 	}
 }

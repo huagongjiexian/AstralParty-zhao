@@ -18,7 +18,7 @@ public class ZhaoCharacter : CharacterModel
 
 	public override int StartingGold => 99;
 
-	public override CharacterGender Gender => (CharacterGender)1;
+	public override CharacterGender Gender => CharacterGender.Feminine;
 
 	public override Color NameColor => new Color("FFB300");
 
@@ -26,7 +26,7 @@ public class ZhaoCharacter : CharacterModel
 
 	public override Color DialogueColor => new Color("590700");
 
-	public override VfxColor SpeechBubbleColor => (VfxColor)0;
+	public override VfxColor SpeechBubbleColor => VfxColor.Red;
 
 	public override Color MapDrawingColor => new Color("CB282B");
 

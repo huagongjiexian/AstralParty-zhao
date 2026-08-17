@@ -8,7 +8,7 @@ namespace Zhao;
 /// </summary>
 public class LightPower : PowerModel
 {
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)1;
+	public override PowerStackType StackType => PowerStackType.Counter;
 }

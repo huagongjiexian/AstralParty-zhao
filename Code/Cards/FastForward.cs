@@ -37,7 +37,7 @@ public sealed class FastForward : ZhaoCardModel
 
 		private TaskAwaiter _003C_003Eu__3;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_008c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0091: Unknown result type (might be due to invalid IL or missing references)
@@ -88,7 +88,7 @@ public sealed class FastForward : ZhaoCardModel
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<VulnerablePower>, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<VulnerablePower>, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_00a7;
@@ -121,21 +121,21 @@ public sealed class FastForward : ZhaoCardModel
 					{
 						SectionStage stage = (SectionStage)Math.Min((int)(section.Stage + 1), 5);
 						val = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, stage).GetAwaiter();
-						if (!((TaskAwaiter)(ref val)).IsCompleted)
+						if (!val.IsCompleted)
 						{
 							num = (_003C_003E1__state = 2);
 							_003C_003Eu__3 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
 							return;
 						}
 						goto IL_01af;
 					}
 					val = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Intro).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 3);
 						_003C_003Eu__3 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val, ref this);
 						return;
 					}
 					break;
@@ -146,42 +146,42 @@ public sealed class FastForward : ZhaoCardModel
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<WeakPower>, _003COnPlay_003Ed__5>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<WeakPower>, _003COnPlay_003Ed__5>(ref val2, ref this);
 						return;
 					}
 					goto IL_0124;
 					IL_01af:
-					((TaskAwaiter)(ref val)).GetResult();
+					val.GetResult();
 					goto end_IL_000e;
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public override global::System.Collections.Generic.IEnumerable<CardKeyword> CanonicalKeywords => (global::System.Collections.Generic.IEnumerable<CardKeyword>)(object)new CardKeyword[1] { (CardKeyword)1 };
+	public override global::System.Collections.Generic.IEnumerable<CardKeyword> CanonicalKeywords => (global::System.Collections.Generic.IEnumerable<CardKeyword>)(object)new CardKeyword[1] { CardKeyword.Exhaust };
 
 	public override int MaxUpgradeLevel => 2;
 
 	public FastForward()
-		: base(2, (CardType)2, (CardRarity)3, (TargetType)1)
+		: base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 	{
 	}
 
@@ -195,8 +195,8 @@ public sealed class FastForward : ZhaoCardModel
 		_003COnPlay_003Ed__6._003C_003E4__this = this;
 		_003COnPlay_003Ed__6.choiceContext = choiceContext;
 		_003COnPlay_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__6._003C_003Et__builder.Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
+		return _003COnPlay_003Ed__6._003C_003Et__builder.Task;
 	}
 
 	protected override void OnUpgrade()

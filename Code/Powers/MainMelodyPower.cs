@@ -32,7 +32,7 @@ public class MainMelodyPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0068: Unknown result type (might be due to invalid IL or missing references)
 			//IL_006d: Unknown result type (might be due to invalid IL or missing references)
@@ -57,43 +57,43 @@ public class MainMelodyPower : PowerModel
 					num = (_003C_003E1__state = -1);
 					goto IL_0083;
 				}
-				if ((int)side == 1 && Enumerable.Contains<Creature>((global::System.Collections.Generic.IEnumerable<Creature>)participants, ((PowerModel)mainMelodyPower).Owner))
+				if (side == CombatSide.Player && Enumerable.Contains<Creature>((global::System.Collections.Generic.IEnumerable<Creature>)participants, ((PowerModel)mainMelodyPower).Owner))
 				{
 					val = PowerCmd.Remove((PowerModel)mainMelodyPower).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnStart_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnStart_003Ed__5>(ref val, ref this);
 						return;
 					}
 					goto IL_0083;
 				}
 				goto end_IL_000e;
 				IL_0083:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)2;
+	public override PowerStackType StackType => PowerStackType.Single;
 
 	public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
 	{
@@ -126,7 +126,7 @@ public class MainMelodyPower : PowerModel
 		_003CAfterSideTurnStart_003Ed__6.side = side;
 		_003CAfterSideTurnStart_003Ed__6.participants = participants;
 		_003CAfterSideTurnStart_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnStart_003Ed__6._003C_003Et__builder)).Start<_003CAfterSideTurnStart_003Ed__5>(ref _003CAfterSideTurnStart_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnStart_003Ed__6._003C_003Et__builder)).Task;
+		_003CAfterSideTurnStart_003Ed__6._003C_003Et__builder.Start<_003CAfterSideTurnStart_003Ed__5>(ref _003CAfterSideTurnStart_003Ed__6);
+		return _003CAfterSideTurnStart_003Ed__6._003C_003Et__builder.Task;
 	}
 }

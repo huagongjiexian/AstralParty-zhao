@@ -39,7 +39,7 @@ public static class PursuitExecutor
 
 		private TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>> _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
@@ -86,12 +86,12 @@ public static class PursuitExecutor
 				_003Ci_003E5__2++;
 				goto IL_00e0;
 				IL_005d:
-				val = CreatureCmd.Damage(choiceContext, val2, damagePerHit, (ValueProp)40, player.Creature, (CardModel)null).GetAwaiter();
+				val = CreatureCmd.Damage(choiceContext, val2, damagePerHit, PursuitFlag | ValueProp.Move, player.Creature, (CardModel)null).GetAwaiter();
 				if (!val.IsCompleted)
 				{
 					num = (_003C_003E1__state = 0);
 					_003C_003Eu__1 = val;
-					((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>, _003CChase_003Ed__1>(ref val, ref this);
+					_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>, _003CChase_003Ed__1>(ref val, ref this);
 					return;
 				}
 				goto IL_00c8;
@@ -100,21 +100,22 @@ public static class PursuitExecutor
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public const ValueProp PursuitFlag = (ValueProp)32;
+	/// <summary>自定追击标志位(0x20),用于代码级区分追击伤害(游戏枚举未定义此位)。</summary>
+	public const ValueProp PursuitFlag = (ValueProp)0x20;
 
 	[AsyncStateMachine(typeof(_003CChase_003Ed__1))]
 	public static global::System.Threading.Tasks.Task Chase(PlayerChoiceContext choiceContext, Player player, int hitCount, decimal damagePerHit, Creature? target = null)
@@ -129,8 +130,8 @@ public static class PursuitExecutor
 		_003CChase_003Ed__2.damagePerHit = damagePerHit;
 		_003CChase_003Ed__2.target = target;
 		_003CChase_003Ed__2._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CChase_003Ed__2._003C_003Et__builder)).Start<_003CChase_003Ed__1>(ref _003CChase_003Ed__2);
-		return ((AsyncTaskMethodBuilder)(ref _003CChase_003Ed__2._003C_003Et__builder)).Task;
+		_003CChase_003Ed__2._003C_003Et__builder.Start<_003CChase_003Ed__1>(ref _003CChase_003Ed__2);
+		return _003CChase_003Ed__2._003C_003Et__builder.Task;
 	}
 
 	private static Creature? PickRandomLivingEnemy(Player player)

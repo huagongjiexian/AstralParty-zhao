@@ -38,7 +38,7 @@ public sealed class LightYo : ZhaoCardModel
 
 		private TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>> _003C_003Eu__2;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0099: Unknown result type (might be due to invalid IL or missing references)
 			//IL_009e: Unknown result type (might be due to invalid IL or missing references)
@@ -79,11 +79,11 @@ public sealed class LightYo : ZhaoCardModel
 						goto IL_00bb;
 					}
 					val2 = PowerCmd.Remove<LightPower>(_003Ccreature_003E5__2).GetAwaiter();
-					if (!((TaskAwaiter)(ref val2)).IsCompleted)
+					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__3>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__3>(ref val2, ref this);
 						return;
 					}
 				}
@@ -93,7 +93,7 @@ public sealed class LightYo : ZhaoCardModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val2)).GetResult();
+				val2.GetResult();
 				goto IL_00bb;
 				IL_014b:
 				val.GetResult();
@@ -101,12 +101,12 @@ public sealed class LightYo : ZhaoCardModel
 				IL_00bb:
 				if (_003Clight_003E5__3 > 0)
 				{
-					val = CreatureCmd.Damage(choiceContext, cardPlay.Target, decimal.op_Implicit(_003Clight_003E5__3) * 2m, (ValueProp)8, _003Ccreature_003E5__2, (CardModel)lightYo).GetAwaiter();
+					val = CreatureCmd.Damage(choiceContext, cardPlay.Target, (decimal)(_003Clight_003E5__3) * 2m, ValueProp.Move, _003Ccreature_003E5__2, (CardModel)lightYo).GetAwaiter();
 					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__2 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>, _003COnPlay_003Ed__3>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<global::System.Collections.Generic.IEnumerable<DamageResult>>, _003COnPlay_003Ed__3>(ref val, ref this);
 						return;
 					}
 					goto IL_014b;
@@ -117,18 +117,18 @@ public sealed class LightYo : ZhaoCardModel
 			{
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -145,7 +145,7 @@ public sealed class LightYo : ZhaoCardModel
 	}
 
 	public LightYo()
-		: base(3, (CardType)2, (CardRarity)4, (TargetType)2)
+		: base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 	{
 	}
 
@@ -160,8 +160,8 @@ public sealed class LightYo : ZhaoCardModel
 		_003COnPlay_003Ed__4.choiceContext = choiceContext;
 		_003COnPlay_003Ed__4.cardPlay = cardPlay;
 		_003COnPlay_003Ed__4._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Start<_003COnPlay_003Ed__3>(ref _003COnPlay_003Ed__4);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__4._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__4._003C_003Et__builder.Start<_003COnPlay_003Ed__3>(ref _003COnPlay_003Ed__4);
+		return _003COnPlay_003Ed__4._003C_003Et__builder.Task;
 	}
 
 	protected override void OnUpgrade()

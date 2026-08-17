@@ -32,7 +32,7 @@ public class LiberationPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
 			//IL_005b: Unknown result type (might be due to invalid IL or missing references)
@@ -50,11 +50,11 @@ public class LiberationPower : PowerModel
 				if (num != 0)
 				{
 					val = liberationPower._003C_003En__0(applier, cardSource).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterApplied_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterApplied_003Ed__5>(ref val, ref this);
 						return;
 					}
 				}
@@ -64,7 +64,7 @@ public class LiberationPower : PowerModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				liberationPower._bumped.Clear();
 				Player val2 = liberationPower.PlayerForOwner();
 				if (val2 != null)
@@ -94,17 +94,17 @@ public class LiberationPower : PowerModel
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -122,7 +122,7 @@ public class LiberationPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
@@ -142,7 +142,7 @@ public class LiberationPower : PowerModel
 				TaskAwaiter val;
 				if (num != 0)
 				{
-					Enumerator<ValueTuple<CardModel, int>> enumerator = liberationPower._bumped.GetEnumerator();
+					global::System.Collections.Generic.List<ValueTuple<CardModel, int>>.Enumerator enumerator = liberationPower._bumped.GetEnumerator();
 					try
 					{
 						while (enumerator.MoveNext())
@@ -162,11 +162,11 @@ public class LiberationPower : PowerModel
 					}
 					liberationPower._bumped.Clear();
 					val = liberationPower._003C_003En__1(oldOwner).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterRemoved_003Ed__6>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterRemoved_003Ed__6>(ref val, ref this);
 						return;
 					}
 				}
@@ -176,30 +176,30 @@ public class LiberationPower : PowerModel
 					_003C_003Eu__1 = default(TaskAwaiter);
 					num = (_003C_003E1__state = -1);
 				}
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
 	private readonly List<ValueTuple<CardModel, int>> _bumped = new List<ValueTuple<CardModel, int>>();
 
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)2;
+	public override PowerStackType StackType => PowerStackType.Single;
 
 	[AsyncStateMachine(typeof(_003CAfterApplied_003Ed__5))]
 	public override global::System.Threading.Tasks.Task AfterApplied(Creature? applier, CardModel? cardSource)
@@ -212,8 +212,8 @@ public class LiberationPower : PowerModel
 		_003CAfterApplied_003Ed__6.applier = applier;
 		_003CAfterApplied_003Ed__6.cardSource = cardSource;
 		_003CAfterApplied_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterApplied_003Ed__6._003C_003Et__builder)).Start<_003CAfterApplied_003Ed__5>(ref _003CAfterApplied_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterApplied_003Ed__6._003C_003Et__builder)).Task;
+		_003CAfterApplied_003Ed__6._003C_003Et__builder.Start<_003CAfterApplied_003Ed__5>(ref _003CAfterApplied_003Ed__6);
+		return _003CAfterApplied_003Ed__6._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CAfterRemoved_003Ed__6))]
@@ -226,8 +226,8 @@ public class LiberationPower : PowerModel
 		_003CAfterRemoved_003Ed__7._003C_003E4__this = this;
 		_003CAfterRemoved_003Ed__7.oldOwner = oldOwner;
 		_003CAfterRemoved_003Ed__7._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterRemoved_003Ed__7._003C_003Et__builder)).Start<_003CAfterRemoved_003Ed__6>(ref _003CAfterRemoved_003Ed__7);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterRemoved_003Ed__7._003C_003Et__builder)).Task;
+		_003CAfterRemoved_003Ed__7._003C_003Et__builder.Start<_003CAfterRemoved_003Ed__6>(ref _003CAfterRemoved_003Ed__7);
+		return _003CAfterRemoved_003Ed__7._003C_003Et__builder.Task;
 	}
 
 	private Player? PlayerForOwner()

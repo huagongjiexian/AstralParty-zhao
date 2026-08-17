@@ -1,125 +1,68 @@
-using System.Collections.Generic;
-using System.ComponentModel;
 using Godot;
-using Godot.Bridge;
-using Godot.NativeInterop;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Zhao.FoxFire;
 
-public sealed class NFoxFireCounter : Control
+/// <summary>
+/// 狐火独立计数器 UI(非 Power 图标):显示当前狐火层数,层数大于 0 时可见。
+/// </summary>
+public partial class NFoxFireCounter : Control
 {
-	public class MethodName : MethodName
-	{
-		public static readonly StringName _ExitTree = StringName.op_Implicit("_ExitTree");
-
-		public static readonly StringName OnAmountChanged = StringName.op_Implicit("OnAmountChanged");
-
-		public static readonly StringName RefreshVisibility = StringName.op_Implicit("RefreshVisibility");
-
-		public static readonly StringName SetCountText = StringName.op_Implicit("SetCountText");
-	}
-
-	public class PropertyName : PropertyName
-	{
-		public static readonly StringName _countLabel = StringName.op_Implicit("_countLabel");
-
-		public static readonly StringName _displayedAmount = StringName.op_Implicit("_displayedAmount");
-	}
-
-	public class SignalName : SignalName
-	{
-	}
-
 	private const string IconPath = "res://zhao/images/foxfire/foxfire_icon.png";
 
 	private Player? _player;
-
 	private FoxFireResource? _resource;
-
 	private Label? _countLabel;
-
 	private int _displayedAmount = -1;
 
 	private NFoxFireCounter()
 	{
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ac: Expected O, but got Unknown
-		//IL_00ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d5: Expected O, but got Unknown
-		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ee: Expected O, but got Unknown
-		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0104: Expected O, but got Unknown
-		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0121: Expected O, but got Unknown
-		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0157: Expected O, but got Unknown
-		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0185: Expected O, but got Unknown
-		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b3: Expected O, but got Unknown
-		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ca: Expected O, but got Unknown
-		//IL_01d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01de: Expected O, but got Unknown
-		((Control)this).MouseFilter = (MouseFilterEnum)2;
-		((Control)this).Size = new Vector2(128f, 128f);
-		((Control)this).AnchorLeft = 0.5f;
-		((Control)this).AnchorTop = 1f;
-		((Control)this).AnchorRight = 0.5f;
-		((Control)this).AnchorBottom = 1f;
-		((Control)this).OffsetLeft = 64f;
-		((Control)this).OffsetTop = -212f;
-		((Control)this).OffsetRight = 192f;
-		((Control)this).OffsetBottom = -84f;
-		((Control)this).Scale = new Vector2(0.8f, 0.8f);
-		TextureRect val = new TextureRect
+		MouseFilter = MouseFilterEnum.Ignore;
+		Size = new Vector2(128f, 128f);
+		AnchorLeft = 0.5f;
+		AnchorTop = 1f;
+		AnchorRight = 0.5f;
+		AnchorBottom = 1f;
+		OffsetLeft = 64f;
+		OffsetTop = -212f;
+		OffsetRight = 192f;
+		OffsetBottom = -84f;
+		Scale = new Vector2(0.8f, 0.8f);
+
+		TextureRect icon = new TextureRect
 		{
-			Name = new StringName("Icon"),
-			Texture = GD.Load<Texture2D>("res://zhao/images/foxfire/foxfire_icon.png"),
-			ExpandMode = (ExpandModeEnum)1,
-			StretchMode = (StretchModeEnum)5,
-			MouseFilter = (MouseFilterEnum)2
+			Name = "Icon",
+			Texture = GD.Load<Texture2D>(IconPath),
+			ExpandMode = ExpandModeEnum.IgnoreSize,
+			StretchMode = StretchModeEnum.KeepAspectCentered,
+			MouseFilter = MouseFilterEnum.Ignore
 		};
-		((Control)val).SetAnchorsPreset((LayoutPreset)15, false);
-		((Node)this).AddChild((Node)val, false, (InternalMode)0);
+		icon.SetAnchorsPreset(LayoutPreset.FullRect, false);
+		AddChild(icon, false, InternalMode.Disabled);
+
 		_countLabel = new Label
 		{
-			Name = new StringName("CountLabel"),
-			HorizontalAlignment = (HorizontalAlignment)1,
-			VerticalAlignment = (VerticalAlignment)1,
-			MouseFilter = (MouseFilterEnum)2
+			Name = "CountLabel",
+			HorizontalAlignment = HorizontalAlignment.Center,
+			VerticalAlignment = VerticalAlignment.Center,
+			MouseFilter = MouseFilterEnum.Ignore
 		};
-		((Control)_countLabel).SetAnchorsPreset((LayoutPreset)15, false);
-		((Control)_countLabel).OffsetTop = 41f;
-		((Control)_countLabel).AddThemeFontSizeOverride(new StringName("font_size"), 36);
-		((Control)_countLabel).AddThemeColorOverride(new StringName("font_color"), new Color(1f, 0.9647f, 0.8863f, 1f));
-		((Control)_countLabel).AddThemeColorOverride(new StringName("font_outline_color"), new Color(0f, 0.2453f, 0.46f, 1f));
-		((Control)_countLabel).AddThemeConstantOverride(new StringName("outline_size"), 14);
-		((Node)this).AddChild((Node)_countLabel, false, (InternalMode)0);
-		((CanvasItem)this).Visible = false;
+		_countLabel.SetAnchorsPreset(LayoutPreset.FullRect, false);
+		_countLabel.OffsetTop = 41f;
+		_countLabel.AddThemeFontSizeOverride("font_size", 36);
+		_countLabel.AddThemeColorOverride("font_color", new Color(1f, 0.9647f, 0.8863f, 1f));
+		_countLabel.AddThemeColorOverride("font_outline_color", new Color(0f, 0.2453f, 0.46f, 1f));
+		_countLabel.AddThemeConstantOverride("outline_size", 14);
+		AddChild(_countLabel, false, InternalMode.Disabled);
+		Visible = false;
 		SetCountText(0);
 	}
 
 	public static NFoxFireCounter Create(Player player)
 	{
-		NFoxFireCounter nFoxFireCounter = new NFoxFireCounter();
-		nFoxFireCounter.Initialize(player);
-		return nFoxFireCounter;
+		NFoxFireCounter counter = new NFoxFireCounter();
+		counter.Initialize(player);
+		return counter;
 	}
 
 	private void Initialize(Player player)
@@ -132,7 +75,7 @@ public sealed class NFoxFireCounter : Control
 
 	public override void _ExitTree()
 	{
-		((Node)this)._ExitTree();
+		base._ExitTree();
 		if (_resource != null)
 		{
 			_resource.AmountChanged -= OnAmountChanged;
@@ -143,6 +86,11 @@ public sealed class NFoxFireCounter : Control
 
 	private void OnAmountChanged(int oldAmount, int newAmount)
 	{
+		// 防御:节点被释放但事件未退订时直接忽略回调,避免 ObjectDisposedException 闪退
+		if (!GodotObject.IsInstanceValid(this))
+		{
+			return;
+		}
 		SetCountText(newAmount);
 		RefreshVisibility();
 	}
@@ -151,11 +99,12 @@ public sealed class NFoxFireCounter : Control
 	{
 		if (_resource == null)
 		{
-			((CanvasItem)this).Visible = false;
+			Visible = false;
 		}
 		else
 		{
-			((CanvasItem)this).Visible = ((CanvasItem)this).Visible || _resource.Amount > 0;
+			// 修复:原反编译代码为 Visible || Amount>0,导致显示后永不隐藏
+			Visible = _resource.Amount > 0;
 		}
 	}
 
@@ -165,169 +114,6 @@ public sealed class NFoxFireCounter : Control
 		{
 			_displayedAmount = amount;
 			_countLabel.Text = amount.ToString();
-		}
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	internal static List<MethodInfo> GetGodotMethodList()
-	{
-		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
-		List<MethodInfo> obj = new List<MethodInfo>(4);
-		obj.Add(new MethodInfo(MethodName._ExitTree, new PropertyInfo((Type)0, StringName.op_Implicit(""), (PropertyHint)0, "", (PropertyUsageFlags)6, false), (MethodFlags)1, (List<PropertyInfo>)null, (List<Variant>)null));
-		StringName onAmountChanged = MethodName.OnAmountChanged;
-		PropertyInfo val = new PropertyInfo((Type)0, StringName.op_Implicit(""), (PropertyHint)0, "", (PropertyUsageFlags)6, false);
-		long num = 1L;
-		List<PropertyInfo> obj2 = new List<PropertyInfo>();
-		obj2.Add(new PropertyInfo((Type)2, StringName.op_Implicit("oldAmount"), (PropertyHint)0, "", (PropertyUsageFlags)6, false));
-		obj2.Add(new PropertyInfo((Type)2, StringName.op_Implicit("newAmount"), (PropertyHint)0, "", (PropertyUsageFlags)6, false));
-		obj.Add(new MethodInfo(onAmountChanged, val, (MethodFlags)num, obj2, (List<Variant>)null));
-		obj.Add(new MethodInfo(MethodName.RefreshVisibility, new PropertyInfo((Type)0, StringName.op_Implicit(""), (PropertyHint)0, "", (PropertyUsageFlags)6, false), (MethodFlags)1, (List<PropertyInfo>)null, (List<Variant>)null));
-		StringName setCountText = MethodName.SetCountText;
-		PropertyInfo val2 = new PropertyInfo((Type)0, StringName.op_Implicit(""), (PropertyHint)0, "", (PropertyUsageFlags)6, false);
-		long num2 = 1L;
-		List<PropertyInfo> obj3 = new List<PropertyInfo>();
-		obj3.Add(new PropertyInfo((Type)2, StringName.op_Implicit("amount"), (PropertyHint)0, "", (PropertyUsageFlags)6, false));
-		obj.Add(new MethodInfo(setCountText, val2, (MethodFlags)num2, obj3, (List<Variant>)null));
-		return obj;
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override bool InvokeGodotClassMethod(in godot_string_name method, NativeVariantPtrArgs args, out godot_variant ret)
-	{
-		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
-		if ((ref method) == MethodName._ExitTree && ((NativeVariantPtrArgs)(ref args)).Count == 0)
-		{
-			((Node)this)._ExitTree();
-			ret = default(godot_variant);
-			return true;
-		}
-		if ((ref method) == MethodName.OnAmountChanged && ((NativeVariantPtrArgs)(ref args)).Count == 2)
-		{
-			OnAmountChanged(VariantUtils.ConvertTo<int>(ref ((NativeVariantPtrArgs)(ref args))[0]), VariantUtils.ConvertTo<int>(ref ((NativeVariantPtrArgs)(ref args))[1]));
-			ret = default(godot_variant);
-			return true;
-		}
-		if ((ref method) == MethodName.RefreshVisibility && ((NativeVariantPtrArgs)(ref args)).Count == 0)
-		{
-			RefreshVisibility();
-			ret = default(godot_variant);
-			return true;
-		}
-		if ((ref method) == MethodName.SetCountText && ((NativeVariantPtrArgs)(ref args)).Count == 1)
-		{
-			SetCountText(VariantUtils.ConvertTo<int>(ref ((NativeVariantPtrArgs)(ref args))[0]));
-			ret = default(godot_variant);
-			return true;
-		}
-		return ((Control)this).InvokeGodotClassMethod(ref method, args, ref ret);
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override bool HasGodotClassMethod(in godot_string_name method)
-	{
-		if ((ref method) == MethodName._ExitTree)
-		{
-			return true;
-		}
-		if ((ref method) == MethodName.OnAmountChanged)
-		{
-			return true;
-		}
-		if ((ref method) == MethodName.RefreshVisibility)
-		{
-			return true;
-		}
-		if ((ref method) == MethodName.SetCountText)
-		{
-			return true;
-		}
-		return ((Control)this).HasGodotClassMethod(ref method);
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override bool SetGodotClassPropertyValue(in godot_string_name name, in godot_variant value)
-	{
-		if ((ref name) == PropertyName._countLabel)
-		{
-			_countLabel = VariantUtils.ConvertTo<Label>(ref value);
-			return true;
-		}
-		if ((ref name) == PropertyName._displayedAmount)
-		{
-			_displayedAmount = VariantUtils.ConvertTo<int>(ref value);
-			return true;
-		}
-		return ((GodotObject)this).SetGodotClassPropertyValue(ref name, ref value);
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override bool GetGodotClassPropertyValue(in godot_string_name name, out godot_variant value)
-	{
-		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
-		if ((ref name) == PropertyName._countLabel)
-		{
-			value = VariantUtils.CreateFrom<Label>(ref _countLabel);
-			return true;
-		}
-		if ((ref name) == PropertyName._displayedAmount)
-		{
-			value = VariantUtils.CreateFrom<int>(ref _displayedAmount);
-			return true;
-		}
-		return ((GodotObject)this).GetGodotClassPropertyValue(ref name, ref value);
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	internal static List<PropertyInfo> GetGodotPropertyList()
-	{
-		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
-		List<PropertyInfo> obj = new List<PropertyInfo>();
-		obj.Add(new PropertyInfo((Type)24, PropertyName._countLabel, (PropertyHint)0, "", (PropertyUsageFlags)4096, false));
-		obj.Add(new PropertyInfo((Type)2, PropertyName._displayedAmount, (PropertyHint)0, "", (PropertyUsageFlags)4096, false));
-		return obj;
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override void SaveGodotObjectData(GodotSerializationInfo info)
-	{
-		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
-		((GodotObject)this).SaveGodotObjectData(info);
-		info.AddProperty(PropertyName._countLabel, Variant.From<Label>(ref _countLabel));
-		info.AddProperty(PropertyName._displayedAmount, Variant.From<int>(ref _displayedAmount));
-	}
-
-	[EditorBrowsable(/*Could not decode attribute arguments.*/)]
-	protected override void RestoreGodotObjectData(GodotSerializationInfo info)
-	{
-		((GodotObject)this).RestoreGodotObjectData(info);
-		Variant val = default(Variant);
-		if (info.TryGetProperty(PropertyName._countLabel, ref val))
-		{
-			_countLabel = ((Variant)(ref val)).As<Label>();
-		}
-		Variant val2 = default(Variant);
-		if (info.TryGetProperty(PropertyName._displayedAmount, ref val2))
-		{
-			_displayedAmount = ((Variant)(ref val2)).As<int>();
 		}
 	}
 }

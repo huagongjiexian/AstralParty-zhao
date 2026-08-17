@@ -45,7 +45,7 @@ public sealed class SectionMain : ZhaoCardModel
 
 		private TaskAwaiter<MainMelodyPower?> _003C_003Eu__5;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
@@ -214,11 +214,11 @@ public sealed class SectionMain : ZhaoCardModel
 						if (FoxFireCmd.Get(_003Cplayer_003E5__3) > 0)
 						{
 							val3 = FoxFireCmd.Lose(1, _003Cplayer_003E5__3).GetAwaiter();
-							if (!((TaskAwaiter)(ref val3)).IsCompleted)
+							if (!val3.IsCompleted)
 							{
 								num = (_003C_003E1__state = 0);
 								_003C_003Eu__1 = val3;
-								((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+								_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 								return;
 							}
 							goto IL_0115;
@@ -239,11 +239,11 @@ public sealed class SectionMain : ZhaoCardModel
 					if (FoxFireCmd.Get(_003Cplayer_003E5__3) > 0)
 					{
 						val3 = FoxFireCmd.Lose(1, _003Cplayer_003E5__3).GetAwaiter();
-						if (!((TaskAwaiter)(ref val3)).IsCompleted)
+						if (!val3.IsCompleted)
 						{
 							num = (_003C_003E1__state = 5);
 							_003C_003Eu__1 = val3;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 							return;
 						}
 						goto IL_0359;
@@ -352,167 +352,167 @@ public sealed class SectionMain : ZhaoCardModel
 					goto IL_05d1;
 					IL_05d1:
 					val3 = FoxFireCmd.Gain(1, _003Cplayer_003E5__3).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 11);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_062f;
 					IL_04b1:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Main).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 9);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_051c;
 					IL_062f:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = PlayerCmd.GainEnergy(1m, _003Cplayer_003E5__3).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 12);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_0698;
 					IL_0115:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__3, 1, 6m).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 1);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_0186;
 					IL_03ca:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					goto IL_03d1;
 					IL_0186:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					goto IL_018d;
 					IL_018d:
 					val3 = CreatureCmd.Heal(_003Ccreature_003E5__2, 6m, true).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 2);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_01f0;
 					IL_0698:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Diva).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 13);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_0703;
 					IL_01f0:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = PlayerCmd.GainEnergy(1m, _003Cplayer_003E5__3).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 3);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_0258;
 					IL_051c:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					goto IL_08cd;
 					IL_0258:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Main).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 4);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_02c2;
 					IL_0359:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = PursuitExecutor.Chase(choiceContext, _003Cplayer_003E5__3, 1, 6m).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 6);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_03ca;
 					IL_02c2:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					goto IL_08cd;
 					IL_076e:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					goto IL_08cd;
 					IL_077a:
 					val3 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Diva).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 15);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_07de;
 					IL_0703:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Main).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 14);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_076e;
 					IL_07de:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val3 = FormSystem.SetStage(choiceContext, _003Ccreature_003E5__2, SectionStage.Main).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 16);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_0849;
 					IL_0446:
 					val5.GetResult();
 					val3 = FormSystem.SwitchForm(choiceContext, _003Ccreature_003E5__2, ZhaoForm.Diva).GetAwaiter();
-					if (!((TaskAwaiter)(ref val3)).IsCompleted)
+					if (!val3.IsCompleted)
 					{
 						num = (_003C_003E1__state = 8);
 						_003C_003Eu__1 = val3;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003COnPlay_003Ed__5>(ref val3, ref this);
 						return;
 					}
 					goto IL_04b1;
 					IL_0849:
-					((TaskAwaiter)(ref val3)).GetResult();
+					val3.GetResult();
 					val2 = PowerCmd.Apply<NurseMainHealingPower>(choiceContext, _003Ccreature_003E5__2, 1m, _003Ccreature_003E5__2, (CardModel)sectionMain, false).GetAwaiter();
 					if (!val2.IsCompleted)
 					{
 						num = (_003C_003E1__state = 17);
 						_003C_003Eu__4 = val2;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<NurseMainHealingPower>, _003COnPlay_003Ed__5>(ref val2, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<NurseMainHealingPower>, _003COnPlay_003Ed__5>(ref val2, ref this);
 						return;
 					}
 					goto IL_08c5;
@@ -522,7 +522,7 @@ public sealed class SectionMain : ZhaoCardModel
 					{
 						num = (_003C_003E1__state = 7);
 						_003C_003Eu__2 = val5;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<StrengthPower>, _003COnPlay_003Ed__5>(ref val5, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<StrengthPower>, _003COnPlay_003Ed__5>(ref val5, ref this);
 						return;
 					}
 					goto IL_0446;
@@ -534,12 +534,12 @@ public sealed class SectionMain : ZhaoCardModel
 					num2 = Math.Min(2, powerAmount);
 					if (num2 > 0)
 					{
-						val4 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)_003Ccreature_003E5__2.GetPower<LightPower>(), decimal.op_Implicit(-num2), _003Ccreature_003E5__2, (CardModel)sectionMain, false).GetAwaiter();
+						val4 = PowerCmd.ModifyAmount(choiceContext, (PowerModel)_003Ccreature_003E5__2.GetPower<LightPower>(), (decimal)(-num2), _003Ccreature_003E5__2, (CardModel)sectionMain, false).GetAwaiter();
 						if (!val4.IsCompleted)
 						{
 							num = (_003C_003E1__state = 10);
 							_003C_003Eu__3 = val4;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003COnPlay_003Ed__5>(ref val4, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003COnPlay_003Ed__5>(ref val4, ref this);
 							return;
 						}
 						goto IL_05c9;
@@ -553,7 +553,7 @@ public sealed class SectionMain : ZhaoCardModel
 						{
 							num = (_003C_003E1__state = 18);
 							_003C_003Eu__5 = val;
-							((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<MainMelodyPower>, _003COnPlay_003Ed__5>(ref val, ref this);
+							_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<MainMelodyPower>, _003COnPlay_003Ed__5>(ref val, ref this);
 							return;
 						}
 						break;
@@ -568,19 +568,19 @@ public sealed class SectionMain : ZhaoCardModel
 				_003C_003E1__state = -2;
 				_003Ccreature_003E5__2 = null;
 				_003Cplayer_003E5__3 = null;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
 			_003Ccreature_003E5__2 = null;
 			_003Cplayer_003E5__3 = null;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -610,7 +610,7 @@ public sealed class SectionMain : ZhaoCardModel
 	}
 
 	public SectionMain()
-		: base(1, (CardType)2, (CardRarity)7, (TargetType)1)
+		: base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
 	{
 	}
 
@@ -624,8 +624,8 @@ public sealed class SectionMain : ZhaoCardModel
 		_003COnPlay_003Ed__6._003C_003E4__this = this;
 		_003COnPlay_003Ed__6.choiceContext = choiceContext;
 		_003COnPlay_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003COnPlay_003Ed__6._003C_003Et__builder)).Task;
+		_003COnPlay_003Ed__6._003C_003Et__builder.Start<_003COnPlay_003Ed__5>(ref _003COnPlay_003Ed__6);
+		return _003COnPlay_003Ed__6._003C_003Et__builder.Task;
 	}
 
 	protected override global::System.Threading.Tasks.Task? OnTransformAfterPlay()

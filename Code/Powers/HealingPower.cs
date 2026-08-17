@@ -32,7 +32,7 @@ public class HealingPower : PowerModel
 
 		private TaskAwaiter _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_0084: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0089: Unknown result type (might be due to invalid IL or missing references)
@@ -55,37 +55,37 @@ public class HealingPower : PowerModel
 					num = (_003C_003E1__state = -1);
 					goto IL_009f;
 				}
-				if ((int)side == 1 && Enumerable.Contains<Creature>((global::System.Collections.Generic.IEnumerable<Creature>)participants, ((PowerModel)healingPower).Owner) && !((PowerModel)healingPower).Owner.IsDead)
+				if (side == CombatSide.Player && Enumerable.Contains<Creature>((global::System.Collections.Generic.IEnumerable<Creature>)participants, ((PowerModel)healingPower).Owner) && !((PowerModel)healingPower).Owner.IsDead)
 				{
-					val = CreatureCmd.Heal(((PowerModel)healingPower).Owner, decimal.op_Implicit(((PowerModel)healingPower).Amount), true).GetAwaiter();
-					if (!((TaskAwaiter)(ref val)).IsCompleted)
+					val = CreatureCmd.Heal(((PowerModel)healingPower).Owner, (decimal)(((PowerModel)healingPower).Amount), true).GetAwaiter();
+					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnStart_003Ed__4>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter, _003CAfterSideTurnStart_003Ed__4>(ref val, ref this);
 						return;
 					}
 					goto IL_009f;
 				}
 				goto end_IL_000e;
 				IL_009f:
-				((TaskAwaiter)(ref val)).GetResult();
+				val.GetResult();
 				end_IL_000e:;
 			}
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
@@ -107,7 +107,7 @@ public class HealingPower : PowerModel
 
 		private TaskAwaiter<int> _003C_003Eu__1;
 
-		private void MoveNext()
+		public void MoveNext()
 		{
 			//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
@@ -132,15 +132,15 @@ public class HealingPower : PowerModel
 					num = (_003C_003E1__state = -1);
 					goto IL_00d8;
 				}
-				if ((int)side == 1 && Enumerable.Contains<Creature>(participants, ((PowerModel)healingPower).Owner) && !((PowerModel)healingPower).Owner.IsDead)
+				if (side == CombatSide.Player && Enumerable.Contains<Creature>(participants, ((PowerModel)healingPower).Owner) && !((PowerModel)healingPower).Owner.IsDead)
 				{
-					int num2 = (int)decimal.Floor(decimal.op_Implicit(((PowerModel)healingPower).Amount) / 2m);
-					val = PowerCmd.ModifyAmount(choiceContext, (PowerModel)healingPower, decimal.op_Implicit(num2 - ((PowerModel)healingPower).Amount), ((PowerModel)healingPower).Owner, (CardModel)null, false).GetAwaiter();
+					int num2 = (int)decimal.Floor((decimal)(((PowerModel)healingPower).Amount) / 2m);
+					val = PowerCmd.ModifyAmount(choiceContext, (PowerModel)healingPower, (decimal)(num2 - ((PowerModel)healingPower).Amount), ((PowerModel)healingPower).Owner, (CardModel)null, false).GetAwaiter();
 					if (!val.IsCompleted)
 					{
 						num = (_003C_003E1__state = 0);
 						_003C_003Eu__1 = val;
-						((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CBeforeSideTurnEnd_003Ed__5>(ref val, ref this);
+						_003C_003Et__builder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, _003CBeforeSideTurnEnd_003Ed__5>(ref val, ref this);
 						return;
 					}
 					goto IL_00d8;
@@ -153,23 +153,23 @@ public class HealingPower : PowerModel
 			catch (global::System.Exception exception)
 			{
 				_003C_003E1__state = -2;
-				((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetException(exception);
+				_003C_003Et__builder.SetException(exception);
 				return;
 			}
 			_003C_003E1__state = -2;
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetResult();
+			_003C_003Et__builder.SetResult();
 		}
 
 		[DebuggerHidden]
-		private void SetStateMachine(IAsyncStateMachine stateMachine)
+		public void SetStateMachine(IAsyncStateMachine stateMachine)
 		{
-			((AsyncTaskMethodBuilder)(ref _003C_003Et__builder)).SetStateMachine(stateMachine);
+			_003C_003Et__builder.SetStateMachine(stateMachine);
 		}
 	}
 
-	public override PowerType Type => (PowerType)1;
+	public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => (PowerStackType)1;
+	public override PowerStackType StackType => PowerStackType.Counter;
 
 	[AsyncStateMachine(typeof(_003CAfterSideTurnStart_003Ed__4))]
 	public override global::System.Threading.Tasks.Task AfterSideTurnStart(CombatSide side, global::System.Collections.Generic.IReadOnlyList<Creature> participants, ICombatState state)
@@ -184,8 +184,8 @@ public class HealingPower : PowerModel
 		_003CAfterSideTurnStart_003Ed__5.side = side;
 		_003CAfterSideTurnStart_003Ed__5.participants = participants;
 		_003CAfterSideTurnStart_003Ed__5._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnStart_003Ed__5._003C_003Et__builder)).Start<_003CAfterSideTurnStart_003Ed__4>(ref _003CAfterSideTurnStart_003Ed__5);
-		return ((AsyncTaskMethodBuilder)(ref _003CAfterSideTurnStart_003Ed__5._003C_003Et__builder)).Task;
+		_003CAfterSideTurnStart_003Ed__5._003C_003Et__builder.Start<_003CAfterSideTurnStart_003Ed__4>(ref _003CAfterSideTurnStart_003Ed__5);
+		return _003CAfterSideTurnStart_003Ed__5._003C_003Et__builder.Task;
 	}
 
 	[AsyncStateMachine(typeof(_003CBeforeSideTurnEnd_003Ed__5))]
@@ -202,7 +202,7 @@ public class HealingPower : PowerModel
 		_003CBeforeSideTurnEnd_003Ed__6.side = side;
 		_003CBeforeSideTurnEnd_003Ed__6.participants = participants;
 		_003CBeforeSideTurnEnd_003Ed__6._003C_003E1__state = -1;
-		((AsyncTaskMethodBuilder)(ref _003CBeforeSideTurnEnd_003Ed__6._003C_003Et__builder)).Start<_003CBeforeSideTurnEnd_003Ed__5>(ref _003CBeforeSideTurnEnd_003Ed__6);
-		return ((AsyncTaskMethodBuilder)(ref _003CBeforeSideTurnEnd_003Ed__6._003C_003Et__builder)).Task;
+		_003CBeforeSideTurnEnd_003Ed__6._003C_003Et__builder.Start<_003CBeforeSideTurnEnd_003Ed__5>(ref _003CBeforeSideTurnEnd_003Ed__6);
+		return _003CBeforeSideTurnEnd_003Ed__6._003C_003Et__builder.Task;
 	}
 }

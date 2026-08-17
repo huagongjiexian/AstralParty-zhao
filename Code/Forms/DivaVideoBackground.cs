@@ -71,12 +71,12 @@ public static class DivaVideoBackground
 			{
 				Stream = (VideoStream)_stream,
 				Loop = true,
-				MouseFilter = (MouseFilterEnum)2,
+				MouseFilter = MouseFilterEnum.Ignore,
 				Visible = false
 			};
-			((Control)_player).SetAnchorsPreset((LayoutPreset)0, false);
-			((Control)_player).GrowHorizontal = (GrowDirection)1;
-			((Control)_player).GrowVertical = (GrowDirection)1;
+			((Control)_player).SetAnchorsPreset(LayoutPreset.TopLeft, false);
+			((Control)_player).GrowHorizontal = GrowDirection.Both;
+			((Control)_player).GrowVertical = GrowDirection.Both;
 			VideoStreamPlayer? player = _player;
 			object obj = _003C_003EO._003C0_003E__OnVideoResized;
 			if (obj == null)
@@ -86,7 +86,7 @@ public static class DivaVideoBackground
 				obj = (object)val;
 			}
 			((Control)player).Resized += (Action)obj;
-			((Node)backCombatVfxContainer).AddChild((Node)_player, false, (InternalMode)0);
+			((Node)backCombatVfxContainer).AddChild((Node)_player, false, InternalMode.Disabled);
 		}
 		UpdatePosition(creature);
 		((CanvasItem)_player).Visible = true;
@@ -132,7 +132,7 @@ public static class DivaVideoBackground
 			if (instance != null && val != null && GodotObject.IsInstanceValid((GodotObject)val) && val2 != null && GodotObject.IsInstanceValid((GodotObject)val2))
 			{
 				Transform2D globalTransform = ((CanvasItem)val).GetGlobalTransform();
-				Vector2 val3 = ((Transform2D)(ref globalTransform)).AffineInverse() * ((Control)val2).GlobalPosition;
+				Vector2 val3 = globalTransform.AffineInverse() * ((Control)val2).GlobalPosition;
 				float num = ((((Control)_player).Size.X > 0f) ? ((Control)_player).Size.X : 1024f);
 				((Control)_player).Position = new Vector2(val3.X - num * 0.5f, 0f);
 			}
@@ -152,6 +152,11 @@ public static class DivaVideoBackground
 
 	public static void CleanupCombat()
 	{
+		// 修复:战斗结束时真正释放视频节点,避免每场歌姬战泄漏一个循环解码中的 VideoStreamPlayer
+		if (_player != null && GodotObject.IsInstanceValid((GodotObject)_player))
+		{
+			((Node)_player).QueueFree();
+		}
 		_player = null;
 		_stream = null;
 		_lastCreature = null;
